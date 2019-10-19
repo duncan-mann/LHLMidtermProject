@@ -12,6 +12,7 @@ const morgan     = require('morgan');
 const request    = require('request');
 const rp         = require('request-promise');
 const db         = require('./database.js');
+const helpers    = require('./helpers/db_helpers.js')
 
 
 
@@ -52,3 +53,5 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
+
+helpers.getUserToDos(1);
