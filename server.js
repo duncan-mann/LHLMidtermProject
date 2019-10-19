@@ -14,7 +14,7 @@ const morgan     = require('morgan');
 const { Pool } = require('pg');
 const dbParams = require('./lib/db.js');
 const db = new Pool(dbParams);
-db.connect();
+// db.connect();
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -53,3 +53,25 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
+
+
+const getUserToDos = function(user_id) {
+
+  return db.query(`
+  SELECT *
+  FROM to_dos
+  WHERE user_id = $1
+  `, [user_id])
+  .then(res => console.log(res.rows))
+  .catch(e => console.error('query error: ', e.stack))
+
+}
+
+getUserToDos(1);
+
+
+
+
+
+
+
