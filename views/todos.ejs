@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+    integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+  <link rel="stylesheet" href="../public/styles/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Document</title>
+</head>
+<!--sidebar-->
+<div class="d-flex" id="wrapper">
+  <div class="border-right bg-white" id="sidebar-wrapper">
+    <div class="sidebar-heading">Welcome <span> <strong>FirstName</strong></span>
+    </div>
+    <div class="list-group list-group-flush d-flex flex-column">
+      <figure>
+        <img src="https://picsum.photos/id/525/50" class="rounded-circle mx-auto">
+        <figcaption>@UserName</figcaption>
+      </figure>
+      <a href="#" class="list-group-item list-group-item-action border-0 d-flex">
+        <h6 class="mr-auto">DASHBOARD</h6>
+        <i class="fa fa-home" aria-hidden="true"></i>
+      </a>
+      <a href="#" class="list-group-item list-group-item-action border-0 d-flex">
+        <h6 class="mr-auto">EAT</h6>
+        <i class="fa fa-cutlery" aria-hidden="true"></i>
+      </a>
+      <a href="#" class="list-group-item list-group-item-action border-0 d-flex">
+        <h6 class="mr-auto">READ</h6>
+        <i class="fa fa-book" aria-hidden="true"></i>
+      </a>
+      <a href="#" class="list-group-item list-group-item-action border-0 d-flex">
+        <h6 class="mr-auto">WATCH</h6>
+        <i class="fa fa-film" aria-hidden="true"></i>
+      </a>
+      <a href="#" class="list-group-item list-group-item-action border-0 d-flex">
+        <h6 class="mr-auto">BUY</h6>
+        <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+      </a>
+      <a href="#" class="list-group-item list-group-item-action border-0 d-flex mt-5">
+        <h6 class="mr-auto">Logout</h6>
+        <i class="fa fa-sign-out" aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>
+  <!-- /#sidebar-wrapper -->
+
+  <!-- topbar-->
+  <div id="page-content-wrapper">
+    <nav class="navbar navbar-expand-lg navbar-light bg-danger">
+      <button class="btn btn-danger text-light" id="menu-toggle"><i class="fa fa-bars" aria-hidden="true"></i>
+        TADA!</button>
+      <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li class="nav-item">
+              <a class="btn text-light" href="#"><i class="fa fa-plus" aria-hidden="true"></i> Add</a>
+            </li>
+        <li class="nav-item">
+          <a class="btn text-light" href="#">Complete task</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn text-light" href="#">TodoList</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+<body>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script>
+    $("#menu-toggle").click(function (e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    })
+  </script>
+</body>
+
+</html>
