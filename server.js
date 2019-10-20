@@ -69,17 +69,32 @@ app.get('/register', (req,res) => {
 
 app.get("/todos", (req, res) => {
   
-  const toDos = helpers.getUserToDos(2).then( (results) => {
-  const toDos = {results};
-  res.render("todos", toDos);
-  console.log(toDos)});
+  helpers.getUserToDos(2)
+    .then( (results) => {
+      const toDos = {results};
+      res.render("todos", toDos);
+      console.log(toDos)
+    });
 });
 
 app.get("/home", (req, res) => {
   res.render("index");
 });
 
+app.post('/loginUser', (req, res) => {
+  //Does req.body.user and req.body.PW match ? redirect to /todos : DISPLAY ERROR, redirect to /login)
+  helpers.getUserByEmail(req.body.email)
+    .then( (user) => {
 
+    if (req.body.password === user.password) {
+      res.redirect('/todos');
+    } else {
+      res.send('Incorrect password!');
+    }
+    console.log(user);
+  })
+  .catch(e => console.error('Login Error:' , e.stack))
+})
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

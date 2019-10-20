@@ -13,19 +13,22 @@ const getUserToDos = function(user_id) {
 }
 module.exports.getUserToDos = getUserToDos;
 
-const getUserByEmail = function(userEmail) {
 // This function takes in an email, and then returns an object 'user', with the corresponding email and password of that user. 
 // Server will verifiy that the password matches in POST /login request. 
-  return db.query(
-    `SELECT *
+
+const getUserByEmail = function(userEmail) {
+
+  return db.query(`
+    SELECT *
     FROM users
-    WHERE email = $1`
-  [userEmail]).then(res => {
+    WHERE email = $1
+    `, [userEmail])
+    .then(res => {
     const user = {
-      email = res.rows[0].email,
-      password = res.rows[0].password
+      email : res.rows[0].email,
+      password : res.rows[0].password
     }
     return user})
   .catch(e => console.log('User could not be found: ', e.stack))
 }
-module.exports.getUsersByEmail = getUsersByEmail;
+module.exports.getUserByEmail = getUserByEmail;
