@@ -13,7 +13,12 @@ const request    = require('request');
 const rp         = require('request-promise');
 const db         = require('./database.js');
 const helpers    = require('./helpers/db_helpers.js')
+const cookieSession = require('cookie-session')
 
+app.use(cookieSession({
+  name: 'user_id',
+  keys: ['lhl']
+}));
 
 const users = {
   "aJ48lWF": {

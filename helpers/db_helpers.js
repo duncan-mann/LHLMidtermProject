@@ -37,3 +37,15 @@ const getUserByEmail = function(userEmail) {
   .catch(e => console.log('Error finding user', e.stack))
 }
 module.exports.getUserByEmail = getUserByEmail;
+
+const generateRandomString = function() {
+  let result           = '';
+  const characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const charactersLength = characters.length;
+  for (let i = 0; i < 6; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+};
+
+module.exports.generateRandomString = generateRandomString;
