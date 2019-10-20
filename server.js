@@ -89,12 +89,12 @@ app.post('/loginUser', (req, res) => {
   //Does req.body.user and req.body.PW match ? redirect to /todos : DISPLAY ERROR, redirect to /login)
   helpers.getUserByEmail(req.body.email)
     .then( (user) => {
-      
+
     if (user === undefined) {
       res.redirect('/registerError')
     }
 
-    if (req.body.password === user.password) {
+    if (req.body.password === user.password) { 
       res.redirect('/todos');
     } else {
       res.send('Incorrect password!');
@@ -103,6 +103,10 @@ app.post('/loginUser', (req, res) => {
   })
   .catch(e => console.error('Login Error:' , e.stack))
 })
+
+app.post("/logout", (req, res) => {
+  res.redirect('/');
+});
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
