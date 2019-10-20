@@ -57,6 +57,8 @@ app.get("/todos", (req, res) => {
 });
 
 app.get("/home", (req, res) => {
+  const toDos = helpers.getUserToDos(2)
+  console.log(toDos);
   res.render("index");
 });
 

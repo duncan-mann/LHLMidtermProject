@@ -1,9 +1,5 @@
 const db = require('../database.js');
 
-const getUserWithEmail = function(email) {
-
-}
-
 const getUserToDos = function(user_id) {
   return db.query(`
   SELECT *
