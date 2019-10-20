@@ -23,14 +23,9 @@ const getUserByEmail = function(userEmail) {
     FROM users
     `)
     .then(res => {
-      let user = {
-        email : userEmail,
-        password : undefined
-      }
       for (each of res.rows) {
         if (each.email === userEmail) {
-          user.password = each.password;
-          return user;
+          return each;
         }
       }
     return undefined})

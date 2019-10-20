@@ -16,7 +16,7 @@ const helpers    = require('./helpers/db_helpers.js')
 const cookieSession = require('cookie-session')
 
 app.use(cookieSession({
-  name: 'user_id',
+  name: 'session',
   keys: ['lhl']
 }));
 
@@ -77,8 +77,9 @@ app.get('/registerError', (req,res) => {
 })
 
 app.get("/todos", (req, res) => {
+  const userId = req.session.userId;
   
-  helpers.getUserToDos(2)
+  helpers.getUserToDos(userId)
     .then( (results) => {
       const toDos = {results};
       res.render("todos", toDos);
@@ -99,7 +100,8 @@ app.post('/loginUser', (req, res) => {
       res.redirect('/registerError')
     }
 
-    if (req.body.password === user.password) { 
+    if (req.body.password === user.password) {
+      req.session.userId = user.id;
       res.redirect('/todos');
     } else {
       res.send('Incorrect password!');
@@ -110,6 +112,7 @@ app.post('/loginUser', (req, res) => {
 })
 
 app.post("/logout", (req, res) => {
+  res.clearCookie('session');
   res.redirect('/');
 });
 
