@@ -77,16 +77,25 @@ app.get("/home", (req, res) => {
 
 app.post('/register', (req, res) => {
   let request = req.body;
+
   if(!request.email || !request.password || !request.username) {
     res.status(400).send('Please complete your registration form')
     console.log(helpers.checkEmailandUser(request.username, request.email))
-  } if (helpers.checkEmailandUser(request.username, request.email)) {
-    res.status(400).semd('email or username existed')
-  } else {
-    helpers.addUser(request);
-    res.redirect('/index');
-  }
-})
+  } 
+
+  helpers.checkEmailandUser(request.username, request.email)
+    .then( (res) => {
+      console.log(res);
+    })
+    
+  })
+
+  // if (helpers.checkEmailandUser(request.username, request.email)) {
+  //   res.status(400).semd('email or username existed')
+  // } else {
+  //   helpers.addUser(request);
+  //   res.redirect('/index');
+  // }
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

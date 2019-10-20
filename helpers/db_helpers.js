@@ -14,18 +14,18 @@ const getUserToDos = function(user_id) {
 
   const addUser = function (user) {
     const insertString = `INSERT INTO users(username, email, password) VALUES ($1, $2, $3)`
-    return db.query (insertString, [user.username, user.email, user.password])
+    return db.query(insertString, [user.username, user.email, user.password])
     .then(res => console.log(res.rows[0]))
     .catch(e => console.error('query error: ', e.stack))
   }
 
-  const checkEmailandUser = function (userinput, emailinput) {
+  const checkEmailandUser = function (userInput, emailInput) {
     const insertString = `SElECT * FROM users WHERE username = $1 OR email = $2`
-    return db.query(insertString, [[userinput, emailinput]])
-    .then(res => console.log(res.rows[0]))
+    return db.query(insertString, [[userInput, emailInput]])
+    .then(res => res.rows[0])
     .catch(e => console.error('query error: ', e.stack))
   }
 
-module.exports.getUserToDos = { getUserToDos };
-module.exports.addUser = { addUser };
-module.exports.checkEmailandUser = { checkEmailandUser };
+module.exports.getUserToDos = getUserToDos;
+module.exports.addUser = addUser;
+module.exports.checkEmailandUser = checkEmailandUser ;
