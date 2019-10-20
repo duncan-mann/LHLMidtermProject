@@ -51,7 +51,11 @@ app.get("/", (req, res) => {
 });
 
 app.get("/todos", (req, res) => {
-  res.render("todos");
+  
+  const toDos = helpers.getUserToDos(2).then( (results) => {
+  const toDos = {results};
+  res.render("todos", toDos);
+  console.log(toDos)});
 });
 
 app.get("/home", (req, res) => {
