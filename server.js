@@ -15,6 +15,19 @@ const db         = require('./database.js');
 const helpers    = require('./helpers/db_helpers.js')
 
 
+const users = {
+  "aJ48lWF": {
+    id: "aJ48lWF",
+    email: "user@example.com",
+    password: "$2b$10$l18tZ4mpGC2AA0D0NjO79.GSbaJgC2gyG4oRjK8Dg1Q.Pe0gpmbFy"
+  },
+  "user2RandomID": {
+    id: "aJ48lW",
+    email: "user2@example.com",
+    password: "$2b$10$ZGi.0nqXV0.SPMGu1JWcv.AW6753pOidA5dWQexHJ7x5Uho4Jrkj2"
+  },
+};
+
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -47,8 +60,12 @@ app.use("/api/users", usersRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  res.render("register");
+  res.render("index");
 });
+
+app.get('/register', (req,res) => {
+  res.render('register');
+})
 
 app.get("/todos", (req, res) => {
   res.render("todos");
@@ -57,6 +74,8 @@ app.get("/todos", (req, res) => {
 app.get("/home", (req, res) => {
   res.render("index");
 });
+
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
