@@ -1,7 +1,10 @@
 const db = require('../database.js');
 
-const getUserToDos = function(user_id) {
+const getUserWithEmail = function(email) {
 
+}
+
+const getUserToDos = function(user_id) {
   return db.query(`
   SELECT *
   FROM to_dos
@@ -9,7 +12,6 @@ const getUserToDos = function(user_id) {
   `, [user_id])
   .then(res => console.log(res.rows))
   .catch(e => console.error('query error: ', e.stack))
-
 }
 
 module.exports.getUserToDos = getUserToDos;
