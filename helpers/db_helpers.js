@@ -21,14 +21,19 @@ const getUserByEmail = function(userEmail) {
   return db.query(`
     SELECT *
     FROM users
-    WHERE email = $1
-    `, [userEmail])
+    `)
     .then(res => {
-    const user = {
-      email : res.rows[0].email,
-      password : res.rows[0].password
-    }
-    return user})
-  .catch(e => console.log('User could not be found: ', e.stack))
+      let user = {
+        email : userEmail,
+        password : undefined
+      }
+      for (each of res.rows) {
+        if (each.email === userEmail) {
+          user.password = each.password;
+          return user;
+        }
+      }
+    return undefined})
+  .catch(e => console.log('Error finding user', e.stack))
 }
 module.exports.getUserByEmail = getUserByEmail;

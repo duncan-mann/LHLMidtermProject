@@ -67,6 +67,10 @@ app.get('/register', (req,res) => {
   res.render('register');
 })
 
+app.get('/registerError', (req,res) => {
+  res.render('registerError');
+})
+
 app.get("/todos", (req, res) => {
   
   helpers.getUserToDos(2)
@@ -85,6 +89,10 @@ app.post('/loginUser', (req, res) => {
   //Does req.body.user and req.body.PW match ? redirect to /todos : DISPLAY ERROR, redirect to /login)
   helpers.getUserByEmail(req.body.email)
     .then( (user) => {
+      
+    if (user === undefined) {
+      res.redirect('/registerError')
+    }
 
     if (req.body.password === user.password) {
       res.redirect('/todos');
