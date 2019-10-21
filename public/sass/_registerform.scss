@@ -7,6 +7,7 @@
     border-radius: 2rem;
     border: 1px solid rgb(238, 21, 62);
     background-color: rgb(238, 21, 62);
+    box-shadow: 3px 3px grey;
     color: #FFFFFF;
     font-weight: bold;
     font-size: 0.7rem;
@@ -46,6 +47,7 @@
     border-radius: 20px;
     border: 1px solid rgb(238, 21, 62);
     background-color: rgb(238, 21, 62);
+    box-shadow: 3px 3px grey;
     color: #FFFFFF;
     font-size: 0.7rem;
     padding: 0.8rem 3rem;
@@ -83,19 +85,19 @@ button:focus {
 }
 
 .ghost {
-  background-color: transparent;
-  border-color: rgb(238, 21, 62);
-  box-shadow: 2px 2px 2px indianred;
+  background-color: white;
+  border-color: 1px solid rgb(238, 21, 62);
+  box-shadow: 3px 2px  grey;
   padding: 0.5rem 0.8rem;
   border-radius: 10%;
-  color: white;
+  color: rgb(238, 21, 62);
 }
 
 .container {
 	background-color: #fff;
 	border-radius: 1rem;
-  box-shadow: 0 1rem 3rem rgba(0,0,0,0.25),
-			0 1rem 1rem rgba(0,0,0,0.22);
+  box-shadow: 0 1rem 3rem grey,
+			0 1rem 1rem grey;
 	position: relative;
 	overflow: hidden;
 	width: 70%;

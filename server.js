@@ -2,17 +2,17 @@
 require('dotenv').config();
 
 // Web server config
-const PORT       = process.env.PORT || 8080;
-const ENV        = process.env.ENV || "development";
-const express    = require("express");
+const PORT = process.env.PORT || 8080;
+const ENV = process.env.ENV || "development";
+const express = require("express");
 const bodyParser = require("body-parser");
-const sass       = require("node-sass-middleware");
-const app        = express();
-const morgan     = require('morgan');
-const request    = require('request');
-const rp         = require('request-promise');
-const db         = require('./database.js');
-const helpers    = require('./helpers/db_helpers.js')
+const sass = require("node-sass-middleware");
+const app = express();
+const morgan = require('morgan');
+const request = require('request');
+const rp = require('request-promise');
+const db = require('./database.js');
+const helpers = require('./helpers/db_helpers.js')
 
 
 const users = {
@@ -63,7 +63,7 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.get('/register', (req,res) => {
+app.get('/register', (req, res) => {
   res.render('register');
 })
 
@@ -77,15 +77,20 @@ app.get("/home", (req, res) => {
 
 app.post('/register', (req, res) => {
   let request = req.body;
-  if(!request.email || !request.password || !request.username) {
-    res.status(400).send('Please complete your registration form')
-    console.log(helpers.checkEmailandUser(request.username, request.email))
-  } if (helpers.checkEmailandUser(request.username, request.email)) {
-    res.status(400).semd('email or username existed')
-  } else {
-    helpers.addUser(request);
-    res.redirect('/index');
+
+  if (!request.email || !request.password || !request.username || !request.firstname || !request.lastname) {
+    res.status(400).send('Please complete your registration form')
   }
+
+  helpers.checkEmailandUser(request.username, request.email)
+    .then(result => {
+      if (result) {
+        res.status(400).send('Username or email existed');
+      } else {
+        helpers.addUser(request);
+        res.redirect(`/home`);
+      }
+    })
 })
 
 app.listen(PORT, () => {

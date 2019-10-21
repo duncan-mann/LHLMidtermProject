@@ -7,25 +7,25 @@ const getUserToDos = function(user_id) {
   FROM to_dos
   WHERE user_id = $1
   `, [user_id])
-  .then(res => console.log(res.rows))
+  .then(res => res.rows)
   .catch(e => console.error('query error: ', e.stack))
 
 }
 
   const addUser = function (user) {
-    const insertString = `INSERT INTO users(username, email, password) VALUES ($1, $2, $3)`
-    return db.query (insertString, [user.username, user.email, user.password])
-    .then(res => console.log(res.rows[0]))
+    const insertString = `INSERT INTO users(username, first_name, last_name, email, password) VALUES ($1, $2, $3, $4, $5)`
+    return db.query (insertString, [user.username, user.firstname, user.lastname, user.email, user.password])
+    .then(res => res.rows[0])
     .catch(e => console.error('query error: ', e.stack))
   }
 
   const checkEmailandUser = function (userinput, emailinput) {
     const insertString = `SElECT * FROM users WHERE username = $1 OR email = $2`
-    return db.query(insertString, [[userinput, emailinput]])
-    .then(res => console.log(res.rows[0]))
+    return db.query(insertString, [userinput, emailinput])
+    .then(res => res.rows[0])
     .catch(e => console.error('query error: ', e.stack))
   }
 
-module.exports.getUserToDos = { getUserToDos };
-module.exports.addUser = { addUser };
-module.exports.checkEmailandUser = { checkEmailandUser };
+module.exports.getUserToDos = getUserToDos;
+module.exports.addUser = addUser ;
+module.exports.checkEmailandUser = checkEmailandUser;
