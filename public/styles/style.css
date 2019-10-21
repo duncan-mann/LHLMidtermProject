@@ -350,6 +350,7 @@ button:focus {
     color: #e74c3c; }
   #searchbox .heart {
     position: absolute;
+    color: #ee153e;
     font-size: 1rem;
     -webkit-animation: fly 4s ease-in-out infinite;
     animation: fly 4s ease-in-out infinite;
@@ -400,22 +401,3 @@ button:focus {
     transform: scale(2) translateY(-50%);
     margin-bottom: 3rem;
     opacity: 0; } }
-  .to-do {
-    width: 45%
-  }
-
-  .to-do button {
-    display: none;
-  }
-
-  .to-do i {
-    display: inline-block;
-  }
-
-  .to-do:hover button {
-    display: inline-block;
-  }
-
-  .to-do:hover i {
-    display: none;
-  }
