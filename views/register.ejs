@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="styles/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 
 <div id="page-content-wrapper">
@@ -60,12 +61,12 @@
     </div>
   </div>
 
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
   <script>
     const signUpButton = document.getElementById("signUp");
     const signInButton = document.getElementById("signIn");
     const container = document.getElementById("container");
-
+    
     signUpButton.addEventListener("click", () => {
       container.classList.add("right-panel-active");
     });
@@ -73,6 +74,7 @@
     signInButton.addEventListener("click", () => {
       container.classList.remove("right-panel-active");
     });
+
   </script>
 </body>
 
