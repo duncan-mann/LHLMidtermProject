@@ -71,20 +71,28 @@
 
     <% for (let todo of results) { %>
       <% if (todo.category === 'books') { %>
-      <div class="alert alert-primary to-do m-3" role="alert">
+      <div class="alert alert-primary to-do m-3 d-flex justify-content-between" role="alert">
           <%= todo.description %>
+          <i class="fa fa-book" aria-hidden="true"></i>
+          <button type="button" class="btn btn-outline-dark btn-sm">Done!</button>
         </div>
     <% } else if (todo.category === 'movies') { %>
-      <div class="alert alert-success to-do m-3" role="alert">
+      <div class="alert alert-success to-do m-3 d-flex justify-content-between" role="alert">
           <%= todo.description %>
+          <i class="fa fa-film" aria-hidden="true"></i>
+          <button type="button" class="btn btn-outline-dark btn-sm">Done!</button>
         </div>
     <% } else if (todo.category === 'restaurant') { %>
-      <div class="alert alert-warning to-do m-3" role="alert">
+      <div class="alert alert-warning to-do m-3 d-flex justify-content-between" role="alert">
           <%= todo.description %>
+          <i class="fa fa-cutlery" aria-hidden="true"></i>
+          <button type="button" class="btn btn-outline-dark btn-sm">Done!</button>
         </div>
     <% } else if (todo.category === 'product') { %>
-      <div class="alert alert-danger to-do m-3" role="alert">
+      <div class="alert alert-danger to-do m-3 d-flex justify-content-between" role="alert">
            <%= todo.description %>
+           <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+           <button type="button" class="btn btn-outline-dark btn-sm">Done!</button>
         </div>
     <% } %>
   <% } %>

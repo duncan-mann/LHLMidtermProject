@@ -306,3 +306,19 @@ button:focus {
   .to-do {
     width: 45%
   }
+
+  .to-do button {
+    display: none;
+  }
+
+  .to-do i {
+    display: inline-block;
+  }
+
+  .to-do:hover button {
+    display: inline-block;
+  }
+
+  .to-do:hover i {
+    display: none;
+  }
