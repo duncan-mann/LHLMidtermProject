@@ -12,14 +12,28 @@ const morgan     = require('morgan');
 const request    = require('request');
 const rp         = require('request-promise');
 const db         = require('./database.js');
-const helpers    = require('./helpers/db_helpers.js');
-const cookieSession = require('cookie-session');
+const helpers    = require('./helpers/db_helpers.js')
+const cookieSession = require('cookie-session')
 const bcrypt = require('bcrypt');
 
 app.use(cookieSession({
   name: 'session',
   keys: ['lhl']
 }));
+
+
+const users = {
+  "aJ48lWF": {
+    id: "aJ48lWF",
+    email: "user@example.com",
+    password: "$2b$10$l18tZ4mpGC2AA0D0NjO79.GSbaJgC2gyG4oRjK8Dg1Q.Pe0gpmbFy"
+  },
+  "user2RandomID": {
+    id: "aJ48lW",
+    email: "user2@example.com",
+    password: "$2b$10$ZGi.0nqXV0.SPMGu1JWcv.AW6753pOidA5dWQexHJ7x5Uho4Jrkj2"
+  },
+};
 
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
@@ -66,14 +80,10 @@ app.get('/registerError', (req,res) => {
 
 app.get("/todos", (req, res) => {
   const userId = req.session.userId;
-
+  
   // const user = helpers.getUserByEmail(userId).then(user => user);
 
   if (userId) {
-
-    helpers.getUserById(userId)
-      .then( (results) => {
-      return results})
 
   helpers.getUserToDos(userId)
     .then( (results) => {
@@ -124,13 +134,12 @@ app.post('/loginUser', (req, res) => {
       res.status(400).send('Incorrect email/password.')
     }
 
-    if (bcrypt.compareSync(req.body.password, user.password)) {
+    if (req.body.password === user.password) {
       req.session.userId = user.id;
       res.redirect('/todos');
     } else {
       res.send('Incorrect password!');
     }
-    // console.log(user);
   })
   .catch(e => console.error('Login Error:' , e.stack))
 });
@@ -145,7 +154,6 @@ app.post("/logout", (req, res) => {
   res.clearCookie('session');
   res.redirect('/');
 });
-
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
