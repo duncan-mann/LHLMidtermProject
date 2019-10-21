@@ -67,23 +67,9 @@
     <div class="container-fluid d-flex flex-row flex-wrap justify-content-around">
 
     <% for (let todo of results) { %>
-<<<<<<< HEAD
-    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-      <div class="toast-header">
-        <strong class="mr-auto"><%= todo.category %></strong>
-        <small class="text-muted">11 mins ago</small>
-        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="toast-body">
-        <%= todo.description %>
-      </div>
-    </div>
-=======
-      <% if (todo.complete === false) { %>      
+      <% if (todo.complete === false) { %>
         <% if (todo.category === 'books') { %>
-        <div class="alert alert-primary to-do m-3 d-flex justify-content-between align-items-center" role="alert" id="item<%= todo.id %>">  
+        <div class="alert alert-primary to-do m-3 d-flex justify-content-between align-items-center" role="alert" id="item<%= todo.id %>">
             <%= todo.description %>
             <i class="fa fa-book" aria-hidden="true"></i>
             <form method="POST" action="/completeToDoItem/<%= todo.id %>">
@@ -115,7 +101,6 @@
             </form>
           </div>
      <% } %>
->>>>>>> c725309e929265b5fc7bad51bca846ab8c0f9a8d
     <% } %>
   <% } %>
 

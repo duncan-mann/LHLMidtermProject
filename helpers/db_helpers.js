@@ -45,8 +45,8 @@ module.exports.comepleteToDoItem = comepleteToDoItem;
 module.exports.getUserToDos = getUserToDos;
 module.exports.addUser = addUser ;
 module.exports.checkEmailandUser = checkEmailandUser;
-// This function takes in an email, and then returns an object 'user', with the corresponding email and password of that user. 
-// Server will verifiy that the password matches in POST /login request. 
+// This function takes in an email, and then returns an object 'user', with the corresponding email and password of that user.
+// Server will verifiy that the password matches in POST /login request.
 
 const getUserByEmail = function(userEmail) {
 

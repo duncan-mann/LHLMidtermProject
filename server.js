@@ -54,6 +54,7 @@ app.use("/api/users", usersRoutes(db));
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
   res.render("index");
+  console.log(bcrypt.hash('password'));
 });
 
 app.get('/register', (req, res) => {
@@ -66,13 +67,14 @@ app.get('/registerError', (req,res) => {
 
 app.get("/todos", (req, res) => {
   const userId = req.session.userId;
-  
+
   // const user = helpers.getUserByEmail(userId).then(user => user);
 
   if (userId) {
   helpers.getUserToDos(userId)
     .then( (results) => {
       const variables = {results};
+      console.log(variables);
       res.render("todos", variables);
     });
   } else {
@@ -134,6 +136,7 @@ app.post("/logout", (req, res) => {
   res.clearCookie('session');
   res.redirect('/');
 });
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
