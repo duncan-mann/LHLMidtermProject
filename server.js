@@ -140,7 +140,6 @@ app.post('/loginUser', (req, res) => {
     } else {
       res.send('Incorrect password!');
     }
-    // console.log(user);
   })
   .catch(e => console.error('Login Error:' , e.stack))
 });
