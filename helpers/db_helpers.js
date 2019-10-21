@@ -8,7 +8,12 @@ const getUserToDos = function(user_id) {
   JOIN users ON to_dos.user_id = users.id
   WHERE user_id = $1
   `, [user_id])
-  .then(res => res.rows)
+  .then(res => {
+    if (res.rows.length > 0) {
+    return res.rows}
+    else {
+    return undefined }
+    })
   .catch(e => console.error('query error: ', e.stack))
 
 }
@@ -64,6 +69,17 @@ const getUserByEmail = function(userEmail) {
   .catch(e => console.log('Error finding user', e.stack))
 }
 module.exports.getUserByEmail = getUserByEmail;
+
+const getUserById = function(userId) {
+
+  return db.query(`
+    SELECT *
+    FROM users
+    WHERE id = $1`, [userId])
+    .then(res => res.rows)
+  .catch(e => console.log('Error finding user', e.stack))
+}
+module.exports.getUserById = getUserById;
 
 const generateRandomString = function() {
   let result           = '';
