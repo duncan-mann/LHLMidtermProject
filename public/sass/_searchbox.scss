@@ -40,4 +40,33 @@
       background: white;
       color: #e74c3c;
       }
+      .heart{
+        position: absolute;
+        // color: rgb(238, 21, 62);
+        font-size: 1rem;
+        animation: fly 4s ease-in-out infinite;
+        transition: 2s;
+        @keyframes fly{
+          0%{
+              transform: scale(0.8) translateY(0);
+              opacity: 0.5;
+              margin-bottom: 0;
+          }
+          30%{
+              transform: scale(1.1) translatey(-20%);
+              margin-bottom: 1rem;
+              opacity: 0.5;
+          }
+          50%{
+              transform: scale(1.2) translateY(-30%);
+              margin-bottom: 2rem;
+              opacity: 0.7;
+          }
+          100%{
+              transform: scale(2) translateY(-50%);
+              margin-bottom: 3rem;
+              opacity: 0;
+          }
+      }
+    }
 }
