@@ -12,7 +12,8 @@ const apiUrls = {
   reads: 'https://www.googleapis.com/books/v1/volumes',
   movies: 2,
   eats: 3,
-  buys: 4
+  buys: 4,
+  wolfram: 'http://api.wolframalpha.com/v2/query'//?input=pi&appid=9YR6T5-RYTW4PTK83&output=json'
 }
 
 const getItems = function(type, query){
@@ -34,11 +35,14 @@ const getItems = function(type, query){
 
 const getReads =  async function(name_of_book){
   let options = {
+    uri: apiUrls.reads,
+    qs:{
 
+    }
   }
-  await rp('')
+  rp('')
 }
 
 module.exports = {
-  getItems
+
 }

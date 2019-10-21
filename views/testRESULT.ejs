@@ -13,5 +13,13 @@
 
   <body>
     <h1>Hello World!</h1>
+    <% if(true) { %>
+      <ul>
+      <% for (let item of category) { %>
+        <li><%= item %></li>
+      <% } %>
+      </ul>
+    <% } %>
+
   </body>
 </html>

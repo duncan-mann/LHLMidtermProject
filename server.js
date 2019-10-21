@@ -123,6 +123,48 @@ app.get('/testFORM', (req, res) => {
 })
 
 app.post('/testAPI', (req, res) => {
+  let category = [];
+  let textInput = req.body.input;
+
+  //dummy categories
+  let readArray = ['read'];
+  let watchArray = ['watch','see'];
+  let eatArray = ['reserve','eat','eat at'];
+  let buyArray = ['get','buy','purchase'];
+
+  if (readArray.includes(textInput)){
+    category.push('read');
+  } else if (watchArray.includes(textInput)){
+    category.push('watch');
+  } else if (eatArray.includes(textInput)){
+    category.push('eat');
+  } else if (buyArray.includes(textInput)){
+    category.push('buy');
+  }
+  else
+  {
+
+    let options = {
+      uri: 'http://api.wolframalpha.com/v2/query',
+      qs:{
+        input: textInput,
+        output: 'json',
+        appid: '9YR6T5-RYTW4PTK83'
+
+      },
+      json:true
+    }
+    rp(options).then((data) => {
+      let typesString = data.queryresult.datatypes;
+      console.log('TYPESSTRING = ',typesString);
+      let templateVars = {category: typesString.split(',')}
+      console.log('TEMPLATEVARS =', templateVars);
+      res.render('testRESULT', templateVars);
+    }).catch((err) => {
+      console.log(err);
+    });
+  }
+
 
 })
 
