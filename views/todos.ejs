@@ -17,7 +17,7 @@
     <div class="sidebar-heading">Welcome <span> <strong><%= results[0].first_name %></strong></span>
     </div>
     <div class="list-group list-group-flush d-flex flex-column">
-      <figure>
+      <figure class="m-auto">
         <img src="https://picsum.photos/id/525/50" class="rounded-circle mx-auto">
         <figcaption>@<%= results[0].username %></figcaption>
       </figure>
@@ -67,30 +67,28 @@
       </ul>
     </nav>
 
-    <div class="container-fluid">
-        <div class="row">
-
+    <div class="container-fluid d-flex flex-row flex-wrap justify-content-around">
 
     <% for (let todo of results) { %>
       <% if (todo.category === 'books') { %>
-      <div class="alert alert-primary col-sm m-3" role="alert">
+      <div class="alert alert-primary to-do m-3" role="alert">
           <%= todo.description %>
         </div>
     <% } else if (todo.category === 'movies') { %>
-      <div class="alert alert-success col-sm m-3" role="alert">
+      <div class="alert alert-success to-do m-3" role="alert">
           <%= todo.description %>
         </div>
     <% } else if (todo.category === 'restaurant') { %>
-      <div class="alert alert-warning col-sm m-3" role="alert">
+      <div class="alert alert-warning to-do m-3" role="alert">
           <%= todo.description %>
         </div>
     <% } else if (todo.category === 'product') { %>
-      <div class="alert alert-dark col-sm m-3" role="alert">
+      <div class="alert alert-danger to-do m-3" role="alert">
            <%= todo.description %>
         </div>
     <% } %>
   <% } %>
-  </div>
+
 </div>
 
   </div>
