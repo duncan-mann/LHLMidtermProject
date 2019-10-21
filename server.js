@@ -54,7 +54,6 @@ app.use("/api/users", usersRoutes(db));
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
   res.render("index");
-  console.log(bcrypt.hash('password'));
 });
 
 app.get('/register', (req, res) => {
