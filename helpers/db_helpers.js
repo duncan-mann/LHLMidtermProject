@@ -3,7 +3,7 @@ const db = require('../database.js');
 const getUserToDos = function(user_id) {
 
   return db.query(`
-  SELECT *
+  SELECT to_dos.*, users.username, users.first_name, users.last_name
   FROM to_dos
   JOIN users ON to_dos.user_id = users.id
   WHERE user_id = $1
@@ -13,6 +13,20 @@ const getUserToDos = function(user_id) {
 
 }
 module.exports.getUserToDos = getUserToDos;
+
+const comepleteToDoItem = function(toDoId) {
+
+  return db.query(`
+  UPDATE to_dos
+  SET complete = TRUE
+  WHERE id = $1`, [toDoId])
+  .then(res => res.rows)
+  .catch(e => console.error('query error: ', e.stack))
+}
+
+module.exports.comepleteToDoItem = comepleteToDoItem;
+
+
 
   const addUser = function (user) {
     const insertString = `INSERT INTO users(username, first_name, last_name, email, password) VALUES ($1, $2, $3, $4, $5)`

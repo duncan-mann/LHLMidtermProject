@@ -86,7 +86,6 @@ app.get("/todos", (req, res) => {
     .then( (results) => {
       const variables = {results};
       res.render("todos", variables);
-      console.log(variables);
     });
   } else {
     res.redirect('/register')
@@ -133,6 +132,12 @@ app.post('/loginUser', (req, res) => {
     // console.log(user);
   })
   .catch(e => console.error('Login Error:' , e.stack))
+});
+
+app.post('/completeToDoItem/:toDoId', (req, res) => {
+  helpers.comepleteToDoItem(req.params.toDoId).then( ()=> {
+    res.redirect('/todos');
+  })
 })
 
 app.post("/logout", (req, res) => {
