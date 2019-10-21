@@ -82,10 +82,21 @@ app.get("/todos", (req, res) => {
   // const user = helpers.getUserByEmail(userId).then(user => user);
 
   if (userId) {
+
+    helpers.getUserById(userId)
+      .then( (results) => {
+      return results})
+      
   helpers.getUserToDos(userId)
     .then( (results) => {
-      const variables = {results};
-      res.render("todos", variables);
+      if (!results) {
+          helpers.getUserById(userId)
+          .then( (results) => {
+          res.render("todos", {results});
+        })
+      } else {
+          res.render("todos", {results});
+      }
     });
   } else {
     res.redirect('/register')
