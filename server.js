@@ -114,7 +114,7 @@ app.post('/loginUser', (req, res) => {
     .then( (user) => {
 
     if (user === undefined) {
-      res.redirect('/registerError')
+      res.status(400).send('Incorrect email/password.')
     }
 
     if (req.body.password === user.password) {
