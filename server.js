@@ -66,13 +66,19 @@ app.get('/registerError', (req,res) => {
 
 app.get("/todos", (req, res) => {
   const userId = req.session.userId;
+  
+  // const user = helpers.getUserByEmail(userId).then(user => user);
 
+  if (userId) {
   helpers.getUserToDos(userId)
     .then( (results) => {
-      const toDos = {results};
-      res.render("todos", toDos);
-      console.log(toDos)
+      const variables = {results};
+      res.render("todos", variables);
     });
+  } else {
+    res.redirect('/register')
+  }
+
 });
 
 app.get("/home", (req, res) => {
@@ -113,9 +119,15 @@ app.post('/loginUser', (req, res) => {
     } else {
       res.send('Incorrect password!');
     }
-    console.log(user);
+    // console.log(user);
   })
   .catch(e => console.error('Login Error:' , e.stack))
+});
+
+app.post('/completeToDoItem/:toDoId', (req, res) => {
+  helpers.comepleteToDoItem(req.params.toDoId).then( ()=> {
+    res.redirect('/todos');
+  })
 })
 
 app.post("/logout", (req, res) => {

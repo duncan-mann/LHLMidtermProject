@@ -303,6 +303,7 @@ button:focus {
   height: 40px;
   width: 40px; }
 
+<<<<<<< HEAD
 #searchbox {
   display: block;
   position: absolute;
@@ -400,3 +401,24 @@ button:focus {
     transform: scale(2) translateY(-50%);
     margin-bottom: 3rem;
     opacity: 0; } }
+=======
+  .to-do {
+    width: 45%
+  }
+
+  .to-do button {
+    display: none;
+  }
+
+  .to-do i {
+    display: inline-block;
+  }
+
+  .to-do:hover button {
+    display: inline-block;
+  }
+
+  .to-do:hover i {
+    display: none;
+  }
+>>>>>>> c725309e929265b5fc7bad51bca846ab8c0f9a8d
