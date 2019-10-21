@@ -107,7 +107,7 @@ app.post('/loginUser', (req, res) => {
       res.status(400).send('Incorrect email/password.')
     }
 
-    if (req.body.password === user.password) {
+    if (bcrypt.compareSync(req.body.password, user.password)) {
       req.session.userId = user.id;
       res.redirect('/todos');
     } else {

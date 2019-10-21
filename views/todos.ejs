@@ -42,8 +42,8 @@
         <i class="fa fa-shopping-bag" aria-hidden="true"></i>
       </a>
       <form method="POST" action="/logout" class="list-group-item list-group-item-action border-0 d-flex mt-5">
-      <input type="submit" value="Logout" class="mr-auto"></input>
-      <i class="fa fa-sign-out" aria-hidden="true"></i>
+        <input type="submit" value="Logout" class="mr-auto"></input>
+        <i class="fa fa-sign-out" aria-hidden="true"></i>
       </form>
     </div>
   </div>
@@ -55,40 +55,47 @@
       <button class="btn btn-danger text-light" id="menu-toggle"><i class="fa fa-bars" aria-hidden="true"></i>
         TADA!</button>
       <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-          <li class="nav-item">
-              <a class="btn text-light" href="#"><i class="fa fa-plus" aria-hidden="true"></i> Add</a>
-            </li>
         <li class="nav-item">
-          <a class="btn text-light" href="#">Complete task</a>
+          <a class="btn text-light" id="addButton"><i class="fa fa-plus" aria-hidden="true"></i> Add</a>
         </li>
         <li class="nav-item">
-          <a class="btn text-light" href="#">TodoList</a>
+          <a class="btn text-light" href="#">Complete task</a>
         </li>
       </ul>
     </nav>
 
     <% for (let todo of results) { %>
-      <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-          <div class="toast-header">
-            <strong class="mr-auto"><%= todo.category %></strong>
-            <small class="text-muted">11 mins ago</small>
-            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="toast-body">
-              <%= todo.description %>
-          </div>
-        </div>
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <strong class="mr-auto"><%= todo.category %></strong>
+        <small class="text-muted">11 mins ago</small>
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="toast-body">
+        <%= todo.description %>
+      </div>
+    </div>
     <% } %>
   </div>
-<body>
-    
+
+  <body>
+
+    <div id="searchbox">
+      <div class="d-flex justify-content-center h-100">
+        <div class="searchbar">
+          <input class="search_input" type="text" name="" placeholder="Search...">
+          <a href="#" class="search_icon"><i class="fa fa-search"></i></a>
+        </div>
+      </div>
+    </div>
 
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-</body>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <script src="../scripts/functions.js"></script>
+  </body>
 
 </html>

@@ -302,3 +302,49 @@ button:focus {
   margin: 0 5px;
   height: 40px;
   width: 40px; }
+
+#searchbox {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(113, 112, 109, 0.5);
+  display: none; }
+  #searchbox .searchbar {
+    margin: auto;
+    margin-top: 20vh;
+    background-color: #353b48;
+    border-radius: 2rem;
+    padding: 0.5rem; }
+  #searchbox .search_input {
+    color: white;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 0;
+    caret-color: transparent;
+    line-height: 2.2rem;
+    padding: 0 1rem;
+    width: 30vw;
+    caret-color: #ff2748;
+    -webkit-transition: width 0.4s linear;
+    -o-transition: width 0.4s linear;
+    transition: width 0.4s linear; }
+  #searchbox .search_icon {
+    height: 40px;
+    width: 40px;
+    float: right;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border-radius: 50%;
+    background: white;
+    color: #e74c3c; }
