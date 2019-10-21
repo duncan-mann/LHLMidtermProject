@@ -5,6 +5,7 @@ const getUserToDos = function(user_id) {
   return db.query(`
   SELECT *
   FROM to_dos
+  JOIN users ON to_dos.user_id = users.id
   WHERE user_id = $1
   `, [user_id])
   .then(res => res.rows)
