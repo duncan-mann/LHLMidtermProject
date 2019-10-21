@@ -13,7 +13,7 @@ const request = require('request');
 const rp = require('request-promise');
 const db = require('./database.js');
 const helpers = require('./helpers/db_helpers.js')
-
+const bcrypt = require('bcrypt');
 
 const users = {
   "aJ48lWF": {
@@ -77,17 +77,19 @@ app.get("/home", (req, res) => {
 
 app.post('/register', (req, res) => {
   let request = req.body;
+  let newUser = {email: request.email, password: bcrypt.hashSync(request.password, 10), username: request.username, firstname: request.firstname, lastname: request.lastname}
 
   if (!request.email || !request.password || !request.username || !request.firstname || !request.lastname) {
     res.status(400).send('Please complete your registration form')
   }
 
-  helpers.checkEmailandUser(request.username, request.email)
+  helpers.checkEmailandUser(newUser.username, newUser.email)
     .then(result => {
+
       if (result) {
         res.status(400).send('Username or email existed');
       } else {
-        helpers.addUser(request);
+        helpers.addUser(newUser);
         res.redirect(`/home`);
       }
     })
