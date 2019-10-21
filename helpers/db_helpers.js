@@ -11,6 +11,7 @@ const getUserToDos = function(user_id) {
   .catch(e => console.error('query error: ', e.stack))
 
 }
+module.exports.getUserToDos = getUserToDos;
 
   const addUser = function (user) {
     const insertString = `INSERT INTO users(username, first_name, last_name, email, password) VALUES ($1, $2, $3, $4, $5)`

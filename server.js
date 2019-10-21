@@ -6,14 +6,19 @@ const PORT = process.env.PORT || 8080;
 const ENV = process.env.ENV || "development";
 const express = require("express");
 const bodyParser = require("body-parser");
-const sass = require("node-sass-middleware");
-const app = express();
-const morgan = require('morgan');
-const request = require('request');
-const rp = require('request-promise');
-const db = require('./database.js');
-const helpers = require('./helpers/db_helpers.js')
+const sass       = require("node-sass-middleware");
+const app        = express();
+const morgan     = require('morgan');
+const request    = require('request');
+const rp         = require('request-promise');
+const db         = require('./database.js');
+const helpers    = require('./helpers/db_helpers.js')
+const cookieSession = require('cookie-session')
 
+app.use(cookieSession({
+  name: 'session',
+  keys: ['lhl']
+}));
 
 const users = {
   "aJ48lWF": {
@@ -67,12 +72,19 @@ app.get('/register', (req, res) => {
   res.render('register');
 })
 
+app.get('/registerError', (req,res) => {
+  res.render('registerError');
+})
+
 app.get("/todos", (req, res) => {
+  const userId = req.session.userId;
   
-  const toDos = helpers.getUserToDos(2).then( (results) => {
-  const toDos = {results};
-  res.render("todos", toDos);
-  console.log(toDos)});
+  helpers.getUserToDos(userId)
+    .then( (results) => {
+      const toDos = {results};
+      res.render("todos", toDos);
+      console.log(toDos)
+    });
 });
 
 app.get("/home", (req, res) => {
@@ -96,7 +108,34 @@ app.post('/register', (req, res) => {
       }
     })
 })
+app.post('/loginUser', (req, res) => {
+  //Does req.body.user and req.body.PW match ? redirect to /todos : DISPLAY ERROR, redirect to /login)
+  helpers.getUserByEmail(req.body.email)
+    .then( (user) => {
+
+    if (user === undefined) {
+      res.redirect('/registerError')
+    }
+
+    if (req.body.password === user.password) {
+      req.session.userId = user.id;
+      res.redirect('/todos');
+    } else {
+      res.send('Incorrect password!');
+    }
+    console.log(user);
+  })
+  .catch(e => console.error('Login Error:' , e.stack))
+})
+
+app.post("/logout", (req, res) => {
+  res.clearCookie('session');
+  res.redirect('/');
+});
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
+
+
+
