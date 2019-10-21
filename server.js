@@ -22,19 +22,6 @@ app.use(cookieSession({
 }));
 
 
-const users = {
-  "aJ48lWF": {
-    id: "aJ48lWF",
-    email: "user@example.com",
-    password: "$2b$10$l18tZ4mpGC2AA0D0NjO79.GSbaJgC2gyG4oRjK8Dg1Q.Pe0gpmbFy"
-  },
-  "user2RandomID": {
-    id: "aJ48lW",
-    email: "user2@example.com",
-    password: "$2b$10$ZGi.0nqXV0.SPMGu1JWcv.AW6753pOidA5dWQexHJ7x5Uho4Jrkj2"
-  },
-};
-
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -74,13 +61,9 @@ app.get('/register', (req, res) => {
   res.render('register');
 })
 
-app.get('/registerError', (req,res) => {
-  res.render('registerError');
-})
-
 app.get("/todos", (req, res) => {
   const userId = req.session.userId;
-  
+
   // const user = helpers.getUserByEmail(userId).then(user => user);
 
   if (userId) {
@@ -134,7 +117,7 @@ app.post('/loginUser', (req, res) => {
       res.status(400).send('Incorrect email/password.')
     }
 
-    if (req.body.password === user.password) {
+    if (bcrypt.compareSync(req.body.password, user.password)) {
       req.session.userId = user.id;
       res.redirect('/todos');
     } else {
