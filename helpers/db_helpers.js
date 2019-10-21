@@ -19,9 +19,9 @@ const getUserToDos = function(user_id) {
     .catch(e => console.error('query error: ', e.stack))
   }
 
-  const checkEmailandUser = function (userinput, emailinput) {
+  const checkEmailandUser = function (userInput, emailInput) {
     const insertString = `SElECT * FROM users WHERE username = $1 OR email = $2`
-    return db.query(insertString, [userinput, emailinput])
+    return db.query(insertString, [userInput, emailInput])
     .then(res => res.rows[0])
     .catch(e => console.error('query error: ', e.stack))
   }
