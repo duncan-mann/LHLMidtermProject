@@ -14,19 +14,12 @@ const rp         = require('request-promise');
 const db         = require('./database.js');
 const helpers    = require('./helpers/db_helpers.js')
 const cookieSession = require('cookie-session')
+const bcrypt = require('bcrypt');
 
 app.use(cookieSession({
   name: 'session',
   keys: ['lhl']
 }));
-const sass = require("node-sass-middleware");
-const app = express();
-const morgan = require('morgan');
-const request = require('request');
-const rp = require('request-promise');
-const db = require('./database.js');
-const helpers = require('./helpers/db_helpers.js')
-const bcrypt = require('bcrypt');
 
 const users = {
   "aJ48lWF": {
@@ -91,10 +84,6 @@ app.get("/todos", (req, res) => {
 
   if (userId) {
 
-    helpers.getUserById(userId)
-      .then( (results) => {
-      return results})
-      
   helpers.getUserToDos(userId)
     .then( (results) => {
       if (!results) {
