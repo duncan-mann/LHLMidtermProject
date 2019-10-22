@@ -96,7 +96,6 @@ app.get("/todos/:category", (req, res) =>{
   } else if (urlCategory === 'buy') {
     category = 'product';
   }
-console.log('userId-> ',userId);
   if (userId) {
 
     helpers.getToDosByCategory(userId, category)
@@ -107,7 +106,6 @@ console.log('userId-> ',userId);
               res.render("todos", {results});
             })
           } else {
-            console.log('results-> ', results)
             res.render("todos", {results});
         }
       });
@@ -116,6 +114,28 @@ console.log('userId-> ',userId);
     }
 })
 
+app.get("/todos/complete", (req, res) => {
+  const userId = req.session.userId;
+  
+  if (userId) {
+
+  helpers.getUserToDos(userId)
+    .then( (results) => {
+      if (!results) {
+          helpers.getUserById(userId)
+          .then( (results) => {
+          console.log('results->', results);
+          res.render("completedItems", {results});
+        })
+      } else {
+          console.log('results->', results);
+          res.render("completedItems", {results});
+      }
+    });
+  } else {
+    res.redirect('/register')
+  }
+})
 
 app.get("/home", (req, res) => {
   res.render("index");
