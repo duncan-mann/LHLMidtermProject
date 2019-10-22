@@ -11,6 +11,9 @@ const app        = express();
 const morgan     = require('morgan');
 const request    = require('request');
 const rp         = require('request-promise');
+const helpers    = require('./helpers/db_helpers.js')
+
+const toDoRoutes  = express.Router();
 
 
 //Helper function for backend and API calling;
@@ -120,9 +123,12 @@ app.get('/testFORM', (req, res) => {
   res.render('testFORM');
 })
 
-app.post('/testAPI', (req, res) => {
-  let category = [];
+module.exports = function(DataHelpers) {
+
+toDoRoutes.post('/testAPI', (req, res) => {
+  let category;
   let textInput = req.body.input; //don't forget to sanitize this!
+  let descriptionEntry;
 
   //dummy categories
   let readArray = ['read'];
@@ -135,9 +141,17 @@ app.post('/testAPI', (req, res) => {
 
 
   if (readArray.includes(textInputArray[0].toLowerCase())){
-    category.push('read');
-    let templateVars = {category: category, output: textInput};
-    res.render('testRESULT', templateVars);
+    category = 'read';
+    descriptionEntry = textInputArray.slice(1).join(' ');
+    // let templateVars = {category: category, output: textInput};
+    // res.render('testRESULT', templateVars);
+    // res.json(templateVars);
+    helpers.insertItemToDatabase(category, descriptionEntry, 1)
+      .then( ()=> {
+        res.redirect("/todos");
+      });
+    // res.json('test');
+
   } else if (watchArray.includes(textInputArray[0].toLowerCase())){
     category.push('watch');
     let templateVars = {category: category, output: textInput};
@@ -285,4 +299,8 @@ app.post('/testAPI', (req, res) => {
 
 
 })
+
+return toDoRoutes;
+
+}
 

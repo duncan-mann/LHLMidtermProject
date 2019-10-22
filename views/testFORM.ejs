@@ -11,13 +11,16 @@
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Cabin&display=swap" rel="stylesheet">
+  
   <link rel="shortcut icon" href="./icon/favicon.png" type="image/x-icon">
   <title>SMART To-Do</title>
+  <script type="text/javascript" src="/vendor/jquery-2.2.3.min.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
 </head>
 
 <body>
 
-  <form action="/testAPI" method="POST" name="toCategorize" >
+  <form action="/testAPI" method="POST" name="toCategorize" class='form' >
     <label for="input">Input</label><input id="input" name="input">
     <button type="submit" name="type" value="search">Search</button>
   </form>

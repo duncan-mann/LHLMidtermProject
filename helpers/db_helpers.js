@@ -92,3 +92,17 @@ const generateRandomString = function() {
 };
 
 module.exports.generateRandomString = generateRandomString;
+
+const insertItemToDatabase = function(category, item, user) {
+  // let user = req.session.userId
+  return db.query(
+  `INSERT INTO to_dos (user_id, description, category)
+  VALUES ($1, $2, $3)`, [user, item, category])
+  .then(res => res.rows)
+  .catch(e => console.error('query error: ', e.stack))
+};
+
+module.exports.insertItemToDatabase = insertItemToDatabase;
+
+
+
