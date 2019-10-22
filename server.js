@@ -85,6 +85,10 @@ app.get("/todos", (req, res) => {
 
 });
 
+app.get("/editToDo/:toDoId", (req, res) => {
+  //Add functions for editing toDo items. 
+})
+
 app.get("/home", (req, res) => {
   res.render("index");
 });
