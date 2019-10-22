@@ -14,7 +14,18 @@ $("#menu-toggle").click(function (e) {
       $('#searchbox').fadeOut(500);
     }
   })
-});
+
+  //click icon
+$('#logout').on('click', (e)=>{
+  if($(this).hasClass('.button-logout')) {
+    $('.button-logout').trigger('click');
+    }
+  })
+
+
+})
+
+
 //slide register
 const signUpButton = document.getElementById("signUp");
 const signInButton = document.getElementById("signIn");
@@ -27,5 +38,6 @@ signUpButton.addEventListener("click", () => {
 signInButton.addEventListener("click", () => {
   container.classList.remove("right-panel-active");
 });
+
 
 

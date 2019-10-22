@@ -12,6 +12,9 @@
     width: 18rem; }
     #sidebar-wrapper .list-group .hideIcon-sidebar {
       display: none; }
+  #sidebar-wrapper .sidebar-button {
+    border: none;
+    background: transparent; }
 
 #page-content-wrapper {
   min-width: 100vw; }

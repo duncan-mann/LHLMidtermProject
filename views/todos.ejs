@@ -21,28 +21,28 @@
         <img src="https://picsum.photos/id/525/50" class="rounded-circle mx-auto">
         <figcaption>@<%= results[0].username %></figcaption>
       </figure>
-      <a href="#" class="list-group-item list-group-item-action border-0 d-flex">
-        <h6 class="mr-auto">DASHBOARD</h6>
+      <form class="list-group-item list-group-item-action border-0 d-flex">
+        <button class="sidebar-button mr-auto">DASHBOARD</button>
         <i class="fa fa-home" aria-hidden="true"></i>
-      </a>
-      <a href="#" class="list-group-item list-group-item-action border-0 d-flex">
-        <h6 class="mr-auto">EAT</h6>
+      </form>
+      <form class="list-group-item list-group-item-action border-0 d-flex">
+        <button class="sidebar-button mr-auto">EAT</button>
         <i class="fa fa-cutlery" aria-hidden="true"></i>
-      </a>
-      <a href="#" class="list-group-item list-group-item-action border-0 d-flex">
-        <h6 class="mr-auto">READ</h6>
+      </form>
+      <form class="list-group-item list-group-item-action border-0 d-flex">
+        <button class="sidebar-button mr-auto">READ</button>
         <i class="fa fa-book" aria-hidden="true"></i>
-      </a>
-      <a href="#" class="list-group-item list-group-item-action border-0 d-flex">
-        <h6 class="mr-auto">WATCH</h6>
+      </form>
+      <form class="list-group-item list-group-item-action border-0 d-flex">
+        <button class="sidebar-button mr-auto">WATCH</button>
         <i class="fa fa-film" aria-hidden="true"></i>
-      </a>
-      <a href="#" class="list-group-item list-group-item-action border-0 d-flex">
-        <h6 class="mr-auto">BUY</h6>
+      </form>
+      <form href="#" class="list-group-item list-group-item-action border-0 d-flex">
+        <button class="sidebar-button mr-auto">BUY</button>
         <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-      </a>
-      <form method="POST" action="/logout" class="list-group-item list-group-item-action border-0 d-flex mt-5">
-        <input type="submit" value="Logout" class="mr-auto"></input>
+      </form>
+      <form id="logout" method="POST" action="/logout" class="list-group-item list-group-item-action border-0 d-flex mt-5">
+        <button class="button-logout sidebar-button mr-auto">Logout</button>
         <i class="fa fa-sign-out" aria-hidden="true"></i>
       </form>
     </div>
@@ -114,8 +114,10 @@
       <div class="d-flex justify-content-center h-100">
         <div class="searchbar">
             <span class="heart">♥</span>
-          <input class="search_input" type="text" name="" placeholder="Search...">
-          <a href="#" class="search_icon"><i class="fa fa-search"></i></a>
+            <form action="/testAPI" method="POST" name="toCategorize">
+              <input class="search_input" type="text" name="input" placeholder="Add to your todo list">
+              <button type="submit" name="type" value="search" class="search_icon"><i class="fa fa-search"></i></button>
+            </form>
         </div>
       </div>
     </div>

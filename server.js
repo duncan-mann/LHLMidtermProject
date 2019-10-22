@@ -144,3 +144,153 @@ app.listen(PORT, () => {
 
 
 
+/////////API /////////////////////
+
+
+app.post('/testAPI', (req, res) => {
+  let category;
+  let textInput = req.body.input; //don't forget to sanitize this!
+  let descriptionEntry;
+
+  //dummy categories
+  let readArray = ['read','browse'];
+  let watchArray = ['watch','see'];
+  let eatArray = ['reserve','eat','eat at','drink'];
+  let buyArray = ['get','buy','purchase'];
+
+  let textInputArray = textInput.split(' ');
+
+
+
+  if (readArray.includes(textInputArray[0].toLowerCase())){
+    category = 'books';
+    descriptionEntry = textInputArray.slice(1).join(' ');
+    helpers.insertItemToDatabase(category, descriptionEntry, 1)
+      .then( ()=> {
+        res.redirect("/todos");
+      });
+  } else if (watchArray.includes(textInputArray[0].toLowerCase())){
+    category = 'movies';
+    descriptionEntry = textInputArray.slice(1).join(' ');
+    helpers.insertItemToDatabase(category, descriptionEntry, 1)
+      .then( ()=> {
+        res.redirect("/todos");
+      });
+  } else if (eatArray.includes(textInputArray[0].toLowerCase())){
+    category = 'restaurant';
+    descriptionEntry = textInputArray.slice(1).join(' ');
+    helpers.insertItemToDatabase(category, descriptionEntry, 1)
+      .then( ()=> {
+        res.redirect("/todos");
+      });
+  } else if (buyArray.includes(textInputArray[0].toLowerCase())){
+    category = 'product';
+    descriptionEntry = textInputArray.slice(1).join(' ');
+    helpers.insertItemToDatabase(category, descriptionEntry, 1)
+      .then( ()=> {
+        res.redirect("/todos");
+      });
+  }
+  else // if user does not provide a read/buy/watch/eat keyword
+  {
+    let wolframOptions = {
+      uri: 'http://api.wolframalpha.com/v2/query',
+      qs:{
+        input: textInput,
+        output: 'json',
+        appid: '9YR6T5-RYTW4PTK83',
+        ignorecase: true,
+        podtimeout: '0',
+        formattimeout: '0',
+        translation: true,
+        assumption: `C.${textInput}-_*Movie`,
+        assumption: `C.${textInput}-_*Book`,
+        // assumption: `C.${textInput}-_*FictionalCharacter`,
+        // assumption: `C.${textInput}-_*ConsumerProductsPTE`
+      },
+      json:true
+    }
+
+    rp(wolframOptions).then((data) => {
+      let typesString = data.queryresult.datatypes;
+
+      let typesArray = typesString.split(',');
+      if(typesArray.includes('TelevisionProgram') || typesArray.includes('Movie')) {
+        category = 'movies';
+        descriptionEntry = textInputArray.join(' ');
+        helpers.insertItemToDatabase(category, descriptionEntry, 1)
+          .then( ()=> {
+            res.redirect("/todos");
+          });
+      } else if(typesArray.includes('Book') || typesArray.includes('FictionalCharacter')) {
+        category = 'books';
+        descriptionEntry = textInputArray.join(' ');
+        helpers.insertItemToDatabase(category, descriptionEntry, 1)
+          .then( ()=> {
+            res.redirect("/todos");
+          });
+      } else if (typesArray.includes('ConsumerProductsPTE')) {
+        category = 'product';
+        descriptionEntry = textInputArray.join(' ');
+        helpers.insertItemToDatabase(category, descriptionEntry, 1)
+          .then( ()=> {
+            res.redirect("/todos");
+          });
+      }
+      else //if the textInput is not a book, movie or TV show
+      {
+
+        let yelpOptions = {
+          uri: 'https://api.yelp.com/v3/businesses/search',
+          headers:{
+            'Authorization':'Bearer X0dL6JkQu1HPY_GBOtelCfxSgU3it0hPAOYPy99ciP5qaKNce1-vrh1AD_aI6hqTT5UIJt9Gi5HLlPzclzpCRU63AKi25bf1Fhc128ms3s3wgYxaN6SmRVci28qtXXYx'
+          },
+          qs:{
+            term: textInput,
+            location: 'Toronto',
+            categories: 'food',
+            limit: 5
+          },
+          json:true
+        }
+
+        rp(yelpOptions).then((data) => {
+          if(data.total > 0) {
+            category = 'restaurant';
+            descriptionEntry = textInputArray.join(' ');
+            helpers.insertItemToDatabase(category, descriptionEntry, 1)
+              .then( ()=> {
+                res.redirect("/todos");
+              });
+          } else {
+            category = 'product';
+            descriptionEntry = textInputArray.join(' ');
+            helpers.insertItemToDatabase(category, descriptionEntry, 1)
+              .then( ()=> {
+                res.redirect("/todos");
+              });
+          }
+        }).catch( (err) => {
+          console.log(err);
+          res.redirect('/testFORM');
+        })
+        // let templateVars = {
+        //   category: ['Unknown'],
+        //   output: textInput
+        // }
+        // res.render('testRESULT', templateVars);
+      }
+      console.log('TOTAL DATA =', data);
+      console.log('TYPESSTRING = ',typesString);
+
+      //console.log('TEMPLATEVARS =', templateVars);
+
+    }).catch((err) => {
+      console.log(err);
+    });
+
+  }
+
+
+})
+

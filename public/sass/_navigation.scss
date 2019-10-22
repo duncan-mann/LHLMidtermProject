@@ -16,8 +16,12 @@
     .hideIcon-sidebar {
       display: none;
     }
-  }
+  };
 
+  .sidebar-button {
+    border: none;
+    background: transparent;
+  }
 }
 
 #page-content-wrapper {
