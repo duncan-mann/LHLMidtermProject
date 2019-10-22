@@ -21,8 +21,8 @@
         <img src="https://picsum.photos/id/525/50" class="rounded-circle mx-auto">
         <figcaption>@<%= results[0].username %></figcaption>
       </figure>
-      <form class="list-group-item list-group-item-action border-0 d-flex">
-        <button class="sidebar-button mr-auto">DASHBOARD</button>
+      <form method="GET" action="/todos" class="list-group-item list-group-item-action border-0 d-flex">
+        <button type="submit" class="sidebar-button mr-auto">DASHBOARD</button>
         <i class="fa fa-home" aria-hidden="true"></i>
       </form>
       <form class="list-group-item list-group-item-action border-0 d-flex">
@@ -58,17 +58,33 @@
         <li class="nav-item">
           <a class="btn text-light" id="addButton"><i class="fa fa-plus" aria-hidden="true"></i> Add</a>
         </li>
-        <li class="nav-item">
-          <a class="btn text-light" href="#">Complete task</a>
-        </li>
       </ul>
     </nav>
 
     <div class="container-fluid d-flex flex-row flex-wrap justify-content-around">
 
-   <h1>Edit to dos.</h1>
+<div class="p-5">
+        <h3>Edit <%= toDoItem.description %></h3>
+        <form method="POST" action="/editToDo/<%= toDoItem.id %>" id='editToDo'>
+            <div class="row">
+                <label for="toDoItem">Description</label>
+                <input type="text" class="form-control" name="toDoItem">
+            </div>
+            <div class="row">
+                <label for="category">Category</label>
+                <select class="custom-select d-blocl w-100" name="category">
+                    <option value="movies">Movie</option>
+                    <option value="books">Book</option>
+                    <option value="restaurant">Restaurant</option>
+                    <option value="product">Product</option>
+                </select>
+                <button type="submit" class="btn btn-outline-primary mt-3">Submit</button>
+            </div>
+        </form>
+   </div>
+    
 
-</div>
+  </div>
 
   </div>
 
@@ -94,3 +110,6 @@
   </body>
 
 </html>
+
+
+

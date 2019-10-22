@@ -63,9 +63,7 @@ app.get('/register', (req, res) => {
 
 app.get("/todos", (req, res) => {
   const userId = req.session.userId;
-
-  // const user = helpers.getUserByEmail(userId).then(user => user);
-
+  
   if (userId) {
 
   helpers.getUserToDos(userId)
@@ -85,13 +83,46 @@ app.get("/todos", (req, res) => {
 
 });
 
-app.get("/editToDo/:toDoId", (req, res) => {
-  //Add functions for editing toDo items. 
-})
 
 app.get("/home", (req, res) => {
   res.render("index");
 });
+
+app.get('/editToDo/:toDoId', (req, res) => {
+  const userId = req.session.userId;
+  const toDoId = req.params.toDoId;
+
+  if (userId) {
+
+    helpers.getUserById(userId)
+            .then( (results) => {
+            helpers.getUserToDos(userId)
+                .then(toDos => {
+                  let toDoItem;
+                  for (each of toDos) {
+                    if (each.id == toDoId) {
+                       toDoItem = each;
+                    }
+                  }
+                  let templateVars = {results, toDoItem}
+                  console.log(templateVars);
+                  res.render('editToDo', templateVars)
+                })
+                })
+            } else {
+            res.redirect("/register");
+          }
+    });
+
+app.post('/editToDo/:toDoId', (req, res) => {
+    let toDoId = req.params.toDoId;
+    let request = req.body
+    console.log(request);
+    helpers.editToDoItem(toDoId, request.toDoItem, request.category)
+      .then( ()=> {
+        res.redirect('/todos');
+      })
+})
 
 app.post('/register', (req, res) => {
   let request = req.body;

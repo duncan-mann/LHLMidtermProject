@@ -21,8 +21,8 @@
         <img src="https://picsum.photos/id/525/50" class="rounded-circle mx-auto">
         <figcaption>@<%= results[0].username %></figcaption>
       </figure>
-      <form class="list-group-item list-group-item-action border-0 d-flex">
-        <button class="sidebar-button mr-auto">DASHBOARD</button>
+      <form method="GET" action="/todos" class="list-group-item list-group-item-action border-0 d-flex">
+        <button type="submit" class="sidebar-button mr-auto">DASHBOARD</button>
         <i class="fa fa-home" aria-hidden="true"></i>
       </form>
       <form class="list-group-item list-group-item-action border-0 d-flex">
@@ -58,9 +58,6 @@
         <li class="nav-item">
           <a class="btn text-light" id="addButton"><i class="fa fa-plus" aria-hidden="true"></i> Add</a>
         </li>
-        <li class="nav-item">
-          <a class="btn text-light" href="#">Complete task</a>
-        </li>
       </ul>
     </nav>
 
@@ -72,6 +69,9 @@
         <div class="alert alert-primary to-do m-3 d-flex justify-content-between align-items-center" role="alert" id="item<%= todo.id %>">
             <%= todo.description %>
             <i class="fa fa-book" aria-hidden="true"></i>
+            <form method="GET" action="/editToDo/<%= todo.id %>">
+              <button type="submit" class="btn btn-outline-dark btn-sm">Edit</button>
+            </form>
             <form method="POST" action="/completeToDoItem/<%= todo.id %>">
               <button type="submit" class="btn btn-outline-dark btn-sm">Done!</button>
             </form>
@@ -80,6 +80,9 @@
         <div class="alert alert-success to-do m-3 d-flex justify-content-between align-items-center" role="alert" id="item<%= todo.id %>">
             <%= todo.description %>
             <i class="fa fa-film" aria-hidden="true"></i>
+            <form method="GET" action="/editToDo/<%= todo.id %>">
+              <button type="submit" class="btn btn-outline-dark btn-sm">Edit</button>
+            </form>
             <form method="POST" action="/completeToDoItem/<%= todo.id %>">
             <button type="submit" class="btn btn-outline-dark btn-sm">Done!</button>
             </form>
@@ -88,6 +91,9 @@
         <div class="alert alert-warning to-do m-3 d-flex justify-content-between align-items-center" role="alert" id="item<%= todo.id %>">
             <%= todo.description %>
             <i class="fa fa-cutlery" aria-hidden="true "></i>
+            <form method="GET" action="/editToDo/<%= todo.id %>">
+              <button type="submit" class="btn btn-outline-dark btn-sm">Edit</button>
+            </form>
             <form method="POST" action="/completeToDoItem/<%= todo.id %>">
             <button type="submit" class="btn btn-outline-dark btn-sm">Done!</button>
             </form>
@@ -96,6 +102,9 @@
         <div class="alert alert-danger to-do m-3 d-flex justify-content-between align-items-center" role="alert" id="item<%= todo.id %>">
             <%= todo.description %>
             <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+            <form method="GET" action="/editToDo/<%= todo.id %>">
+              <button type="submit" class="btn btn-outline-dark btn-sm">Edit</button>
+            </form>
             <form method="POST" action="/completeToDoItem/<%= todo.id %>">
             <button type="submit" class="btn btn-outline-dark btn-sm">Done!</button>
             </form>
@@ -104,7 +113,7 @@
     <% } %>
   <% } %>
 
-</div>
+  </div>
 
   </div>
 
