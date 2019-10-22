@@ -80,9 +80,62 @@ app.get("/todos", (req, res) => {
   } else {
     res.redirect('/register')
   }
-
 });
 
+app.get("/todos/:category", (req, res) =>{
+  const userId = req.session.userId;
+  let urlCategory = req.params.category;
+  let category;
+
+  if (urlCategory === 'read') {
+    category = 'books';
+  } else if (urlCategory === 'watch') {
+    category = 'movies';
+  } else if (urlCategory === 'eat') {
+    category = 'restaurant';
+  } else if (urlCategory === 'buy') {
+    category = 'product';
+  }
+  if (userId) {
+
+    helpers.getToDosByCategory(userId, category)
+      .then( (results) => {
+        if (!results) {
+            helpers.getUserById(userId)
+            .then( (results) => {
+              res.render("todos", {results});
+            })
+          } else {
+            res.render("todos", {results});
+        }
+      });
+    } else {
+      res.redirect('/register')
+    }
+})
+
+app.get("/todos/complete", (req, res) => {
+  const userId = req.session.userId;
+  
+  if (userId) {
+
+  helpers.getUserToDos(userId)
+    .then( (results) => {
+      if (!results) {
+          helpers.getUserById(userId)
+          .then( (results) => {
+          console.log('results->', results);
+          res.render("completedItems", {results});
+        })
+      } else {
+          console.log('results->', results);
+          res.render("completedItems", {results});
+      }
+    });
+  } else {
+    res.redirect('/register')
+  }
+})
 
 app.get("/home", (req, res) => {
   res.render("index");
