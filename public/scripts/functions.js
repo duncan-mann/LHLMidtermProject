@@ -22,6 +22,14 @@ $("#menu-toggle").click(function (e) {
 
 })
 
+window.onload = function () {
+  Particles.init({
+    selector: '.background-canvas',
+    minDistance: 100,
+    connectParticles: true
+  });
+}
+
 
 //slide register
 const signUpButton = document.getElementById("signUp");
