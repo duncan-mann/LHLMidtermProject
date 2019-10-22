@@ -148,6 +148,7 @@ app.listen(PORT, () => {
 
 
 app.post('/testAPI', (req, res) => {
+  const userId = req.session.userId;
   let category;
   let textInput = req.body.input; //don't forget to sanitize this!
   let descriptionEntry;
@@ -165,28 +166,28 @@ app.post('/testAPI', (req, res) => {
   if (readArray.includes(textInputArray[0].toLowerCase())){
     category = 'books';
     descriptionEntry = textInputArray.slice(1).join(' ');
-    helpers.insertItemToDatabase(category, descriptionEntry, 1)
+    helpers.insertItemToDatabase(category, descriptionEntry, userId)
       .then( ()=> {
         res.redirect("/todos");
       });
   } else if (watchArray.includes(textInputArray[0].toLowerCase())){
     category = 'movies';
     descriptionEntry = textInputArray.slice(1).join(' ');
-    helpers.insertItemToDatabase(category, descriptionEntry, 1)
+    helpers.insertItemToDatabase(category, descriptionEntry, userId)
       .then( ()=> {
         res.redirect("/todos");
       });
   } else if (eatArray.includes(textInputArray[0].toLowerCase())){
     category = 'restaurant';
     descriptionEntry = textInputArray.slice(1).join(' ');
-    helpers.insertItemToDatabase(category, descriptionEntry, 1)
+    helpers.insertItemToDatabase(category, descriptionEntry, userId)
       .then( ()=> {
         res.redirect("/todos");
       });
   } else if (buyArray.includes(textInputArray[0].toLowerCase())){
     category = 'product';
     descriptionEntry = textInputArray.slice(1).join(' ');
-    helpers.insertItemToDatabase(category, descriptionEntry, 1)
+    helpers.insertItemToDatabase(category, descriptionEntry, userId)
       .then( ()=> {
         res.redirect("/todos");
       });
@@ -218,21 +219,21 @@ app.post('/testAPI', (req, res) => {
       if(typesArray.includes('TelevisionProgram') || typesArray.includes('Movie')) {
         category = 'movies';
         descriptionEntry = textInputArray.join(' ');
-        helpers.insertItemToDatabase(category, descriptionEntry, 1)
+        helpers.insertItemToDatabase(category, descriptionEntry, userId)
           .then( ()=> {
             res.redirect("/todos");
           });
       } else if(typesArray.includes('Book') || typesArray.includes('FictionalCharacter')) {
         category = 'books';
         descriptionEntry = textInputArray.join(' ');
-        helpers.insertItemToDatabase(category, descriptionEntry, 1)
+        helpers.insertItemToDatabase(category, descriptionEntry, userId)
           .then( ()=> {
             res.redirect("/todos");
           });
       } else if (typesArray.includes('ConsumerProductsPTE')) {
         category = 'product';
         descriptionEntry = textInputArray.join(' ');
-        helpers.insertItemToDatabase(category, descriptionEntry, 1)
+        helpers.insertItemToDatabase(category, descriptionEntry, userId)
           .then( ()=> {
             res.redirect("/todos");
           });
@@ -258,14 +259,14 @@ app.post('/testAPI', (req, res) => {
           if(data.total > 0) {
             category = 'restaurant';
             descriptionEntry = textInputArray.join(' ');
-            helpers.insertItemToDatabase(category, descriptionEntry, 1)
+            helpers.insertItemToDatabase(category, descriptionEntry, userId)
               .then( ()=> {
                 res.redirect("/todos");
               });
           } else {
             category = 'product';
             descriptionEntry = textInputArray.join(' ');
-            helpers.insertItemToDatabase(category, descriptionEntry, 1)
+            helpers.insertItemToDatabase(category, descriptionEntry, userId)
               .then( ()=> {
                 res.redirect("/todos");
               });
