@@ -19,6 +19,25 @@ const getUserToDos = function(user_id) {
 }
 module.exports.getUserToDos = getUserToDos;
 
+const getToDosByCategory= function(user_id, category) {
+  return db.query(`
+  SELECT to_dos.*, users.username, users.first_name, users.last_name
+  FROM to_dos
+  JOIN users ON to_dos.user_id = users.id
+  WHERE user_id = $1 AND category = $2
+  `, [user_id, category])
+  .then(res => {
+    if (res.rows.length > 0) {
+    return res.rows}
+    else {
+    return undefined }
+    })
+  .catch(e => console.error('query error: ', e.stack))
+}
+
+module.exports.getToDosByCategory = getToDosByCategory;
+
+
 const comepleteToDoItem = function(toDoId) {
 
   return db.query(`

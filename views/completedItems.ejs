@@ -68,7 +68,7 @@
     <div class="container-fluid d-flex flex-row flex-wrap justify-content-around">
 
     <% for (let todo of results) { %>
-      <% if (todo.complete === false) { %>
+      <% if (todo.complete === true) { %>
         <% if (todo.category === 'books') { %>
         <div class="alert alert-primary to-do m-3 d-flex justify-content-between align-items-center" role="alert" id="item<%= todo.id %>">
             <%= todo.description %>
