@@ -63,9 +63,7 @@ app.get('/register', (req, res) => {
 
 app.get("/todos", (req, res) => {
   const userId = req.session.userId;
-
-  // const user = helpers.getUserByEmail(userId).then(user => user);
-
+  
   if (userId) {
 
   helpers.getUserToDos(userId)
@@ -85,9 +83,46 @@ app.get("/todos", (req, res) => {
 
 });
 
+
 app.get("/home", (req, res) => {
   res.render("index");
 });
+
+app.get('/editToDo/:toDoId', (req, res) => {
+  const userId = req.session.userId;
+  const toDoId = req.params.toDoId;
+
+  if (userId) {
+
+    helpers.getUserById(userId)
+            .then( (results) => {
+            helpers.getUserToDos(userId)
+                .then(toDos => {
+                  let toDoItem;
+                  for (each of toDos) {
+                    if (each.id == toDoId) {
+                       toDoItem = each;
+                    }
+                  }
+                  let templateVars = {results, toDoItem}
+                  console.log(templateVars);
+                  res.render('editToDo', templateVars)
+                })
+                })
+            } else {
+            res.redirect("/register");
+          }
+    });
+
+app.post('/editToDo/:toDoId', (req, res) => {
+    let toDoId = req.params.toDoId;
+    let request = req.body
+    console.log(request);
+    helpers.editToDoItem(toDoId, request.toDoItem, request.category)
+      .then( ()=> {
+        res.redirect('/todos');
+      })
+})
 
 app.post('/register', (req, res) => {
   let request = req.body;
@@ -104,10 +139,15 @@ app.post('/register', (req, res) => {
         res.status(400).send('Username or email existed');
       } else {
         helpers.addUser(newUser);
-        res.redirect(`/home`);
-      }
+       helpers.getUserByEmail(newUser.email)
+        .then( (user)=> {
+          req.session.userId = user.id;
+          res.redirect("/todos");        
+        });
+        };
+      })
     })
-})
+
 app.post('/loginUser', (req, res) => {
   //Does req.body.user and req.body.PW match ? redirect to /todos : DISPLAY ERROR, redirect to /login)
   helpers.getUserByEmail(req.body.email)
@@ -148,6 +188,7 @@ app.listen(PORT, () => {
 
 
 app.post('/testAPI', (req, res) => {
+  const userId = req.session.userId;
   let category;
   let textInput = req.body.input; //don't forget to sanitize this!
   let descriptionEntry;
@@ -165,28 +206,28 @@ app.post('/testAPI', (req, res) => {
   if (readArray.includes(textInputArray[0].toLowerCase())){
     category = 'books';
     descriptionEntry = textInputArray.slice(1).join(' ');
-    helpers.insertItemToDatabase(category, descriptionEntry, 1)
+    helpers.insertItemToDatabase(category, descriptionEntry, userId)
       .then( ()=> {
         res.redirect("/todos");
       });
   } else if (watchArray.includes(textInputArray[0].toLowerCase())){
     category = 'movies';
     descriptionEntry = textInputArray.slice(1).join(' ');
-    helpers.insertItemToDatabase(category, descriptionEntry, 1)
+    helpers.insertItemToDatabase(category, descriptionEntry, userId)
       .then( ()=> {
         res.redirect("/todos");
       });
   } else if (eatArray.includes(textInputArray[0].toLowerCase())){
     category = 'restaurant';
     descriptionEntry = textInputArray.slice(1).join(' ');
-    helpers.insertItemToDatabase(category, descriptionEntry, 1)
+    helpers.insertItemToDatabase(category, descriptionEntry, userId)
       .then( ()=> {
         res.redirect("/todos");
       });
   } else if (buyArray.includes(textInputArray[0].toLowerCase())){
     category = 'product';
     descriptionEntry = textInputArray.slice(1).join(' ');
-    helpers.insertItemToDatabase(category, descriptionEntry, 1)
+    helpers.insertItemToDatabase(category, descriptionEntry, userId)
       .then( ()=> {
         res.redirect("/todos");
       });
@@ -218,21 +259,21 @@ app.post('/testAPI', (req, res) => {
       if(typesArray.includes('TelevisionProgram') || typesArray.includes('Movie')) {
         category = 'movies';
         descriptionEntry = textInputArray.join(' ');
-        helpers.insertItemToDatabase(category, descriptionEntry, 1)
+        helpers.insertItemToDatabase(category, descriptionEntry, userId)
           .then( ()=> {
             res.redirect("/todos");
           });
       } else if(typesArray.includes('Book') || typesArray.includes('FictionalCharacter')) {
         category = 'books';
         descriptionEntry = textInputArray.join(' ');
-        helpers.insertItemToDatabase(category, descriptionEntry, 1)
+        helpers.insertItemToDatabase(category, descriptionEntry, userId)
           .then( ()=> {
             res.redirect("/todos");
           });
       } else if (typesArray.includes('ConsumerProductsPTE')) {
         category = 'product';
         descriptionEntry = textInputArray.join(' ');
-        helpers.insertItemToDatabase(category, descriptionEntry, 1)
+        helpers.insertItemToDatabase(category, descriptionEntry, userId)
           .then( ()=> {
             res.redirect("/todos");
           });
@@ -258,14 +299,14 @@ app.post('/testAPI', (req, res) => {
           if(data.total > 0) {
             category = 'restaurant';
             descriptionEntry = textInputArray.join(' ');
-            helpers.insertItemToDatabase(category, descriptionEntry, 1)
+            helpers.insertItemToDatabase(category, descriptionEntry, userId)
               .then( ()=> {
                 res.redirect("/todos");
               });
           } else {
             category = 'product';
             descriptionEntry = textInputArray.join(' ');
-            helpers.insertItemToDatabase(category, descriptionEntry, 1)
+            helpers.insertItemToDatabase(category, descriptionEntry, userId)
               .then( ()=> {
                 res.redirect("/todos");
               });

@@ -103,3 +103,18 @@ const insertItemToDatabase = function(category, item, user) {
   .catch(e => console.error('query error: ', e.stack))
 };
 module.exports.insertItemToDatabase = insertItemToDatabase;
+
+const editToDoItem = function(toDoId, newDescription, newCategory) {
+
+  return db.query( 
+  `UPDATE to_dos
+  SET description = $1,
+  category = $2
+  WHERE to_dos.id = $3
+  `, [newDescription, newCategory, toDoId])
+  .then(res => res.rows)
+  .catch(e => console.error('query error: ', e.stack))
+  
+}
+
+module.exports.editToDoItem = editToDoItem;
