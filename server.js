@@ -104,10 +104,15 @@ app.post('/register', (req, res) => {
         res.status(400).send('Username or email existed');
       } else {
         helpers.addUser(newUser);
-        res.redirect(`/home`);
-      }
+       helpers.getUserByEmail(newUser.email)
+        .then( (user)=> {
+          req.session.userId = user.id;
+          res.redirect("/todos");        
+        });
+        };
+      })
     })
-})
+
 app.post('/loginUser', (req, res) => {
   //Does req.body.user and req.body.PW match ? redirect to /todos : DISPLAY ERROR, redirect to /login)
   helpers.getUserByEmail(req.body.email)
