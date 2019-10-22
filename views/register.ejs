@@ -14,11 +14,11 @@
 </head>
 
 <div id="page-content-wrapper">
-  <nav class="navbar navbar-expand-lg navbar-light bg-danger">
-    <h4 class="text-light">TADA!</h4>
+  <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 border-bottom">
+    <h4>TADA!</h4>
     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
       <li class="nav-item">
-        <a class="btn text-light" href="/"><i class="fa fa-home" aria-hidden="true"></i> Homepage</a>
+        <a class="btn btn-outline-dark" href="/"><i class="fa fa-home" aria-hidden="true"></i> Homepage</a>
     </ul>
   </nav>
 </div>
@@ -29,19 +29,19 @@
     <div class="form-container sign-up-container">
       <form method="POST" action="/register" class="form-group">
         <h1>Create Account</h1>
-        <input type="text" name="firstname" class="form-control"  placeholder="First name" />
-        <input type="text" name="lastname" class="form-control"  placeholder="Last name" />
-        <input type="text" name="username" class="form-control"  placeholder="@username" />
-        <input type="email" name="email"  class="form-control" placeholder="Email" />
-        <input type="password" name="password" class="form-control"  placeholder="Password" />
+        <input type="text" name="firstname" class="form-control" placeholder="First name" />
+        <input type="text" name="lastname" class="form-control" placeholder="Last name" />
+        <input type="text" name="username" class="form-control" placeholder="@username" />
+        <input type="email" name="email" class="form-control" placeholder="Email" />
+        <input type="password" name="password" class="form-control" placeholder="Password" />
         <button type="submit">Sign Up</button>
       </form>
     </div>
     <div class="form-container sign-in-container">
-      <form method = "POST" action="/loginUser" class="form-group">
+      <form method="POST" action="/loginUser" class="form-group">
         <h1>Sign in</h1>
         <input type="email" name="email" class="form-control" placeholder="Email" />
-        <input type="password" name="password" class="form-control"  placeholder="Password" />
+        <input type="password" name="password" class="form-control" placeholder="Password" />
         <button>Sign In</button>
       </form>
     </div>
@@ -61,7 +61,20 @@
     </div>
   </div>
 
-<script src="../scripts/functions.js"></script>
+
+
+
+  <canvas class="background-canvas"></canvas>
+  <script src="path/to/particles.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.min.js"></script>
+  <script src="../scripts/functions.js"></script>
+  <script>
+    window.onload = function () {
+      Particles.init({
+        selector: '.background-canvas'
+      });
+    }
+  </script>
 </body>
 
 </html>

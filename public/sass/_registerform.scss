@@ -5,9 +5,9 @@
 
   button {
     border-radius: 2rem;
-    border: 1px solid rgb(238, 21, 62);
-    background-color: rgb(238, 21, 62);
-    box-shadow: 3px 3px grey;
+    border: 1px solid rgb(45, 77, 145);
+    background-color: rgb(45, 77, 145);
+    box-shadow: 3px 3px ;
     color: #FFFFFF;
     font-weight: bold;
     font-size: 0.7rem;
@@ -45,8 +45,8 @@
 
   button {
     border-radius: 20px;
-    border: 1px solid rgb(238, 21, 62);
-    background-color: rgb(238, 21, 62);
+    border: 1px solid rgb(45, 77, 145);
+    background-color: rgb(45, 77, 145);
     box-shadow: 3px 3px grey;
     color: #FFFFFF;
     font-size: 0.7rem;
@@ -86,17 +86,17 @@ button:focus {
 
 .ghost {
   background-color: white;
-  border-color: 1px solid rgb(238, 21, 62);
+  border-color: 1px solid rgb(10, 18, 94);
   box-shadow: 3px 2px  grey;
   padding: 0.5rem 0.8rem;
   border-radius: 10%;
-  color: rgb(238, 21, 62);
+  color: rgb(10, 18, 94);
 }
 
 .container {
 	background-color: #fff;
 	border-radius: 1rem;
-  box-shadow: 0 1rem 3rem grey,
+  box-shadow: 0 1rem 3rem rgba(115, 131, 141, 0.7),
 			0 1rem 1rem grey;
 	position: relative;
 	overflow: hidden;
@@ -152,9 +152,9 @@ button:focus {
 }
 
 .overlay {
-	background: rgb(238, 21, 62);
-	background: -webkit-linear-gradient(to right, rgb(238, 21, 62), rgb(238, 21, 62));
-	background: linear-gradient(to right, rgb(238, 21, 62), rgb(238, 21, 62));
+	background: rgb(10, 18, 94);
+	background: -webkit-linear-gradient(to right, rgb(10, 18, 94), rgb(45, 77, 145));
+	background: linear-gradient(to right, rgb(10, 18, 94), rgb(45, 77, 145));
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0 0;

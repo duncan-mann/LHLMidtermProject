@@ -16,12 +16,9 @@ $("#menu-toggle").click(function (e) {
   })
 
   //click icon
-$('#logout').on('click', (e)=>{
-  if($(this).hasClass('.button-logout')) {
-    $('.button-logout').trigger('click');
-    }
+  $('#logout').on('click', (e)=>{
+    $('#logout').submit();
   })
-
 
 })
 
@@ -38,6 +35,10 @@ signUpButton.addEventListener("click", () => {
 signInButton.addEventListener("click", () => {
   container.classList.remove("right-panel-active");
 });
+
+
+//particle
+
 
 
 

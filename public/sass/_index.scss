@@ -1,0 +1,32 @@
+#id {
+  width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.intro {
+  background: rgba(222, 222, 223, 0.5);
+  height: 40vh;
+  width: 75%;
+  .introduction {
+    position: absolute;
+    width: 35%;
+    padding: 1rem;
+    margin: 5rem;
+    left: 15%;
+  }
+}
+
+.blank {
+  flex: 1;
+  width: 25%;
+}
+
+.background-canvas {
+  position:  absolute;
+  display:  block;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+
