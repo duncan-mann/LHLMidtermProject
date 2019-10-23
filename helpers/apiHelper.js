@@ -1,48 +1,58 @@
-const rp = require('request-promise');
+
 
 const apiKeys = {
-  reads: 'AIzaSyDkAaNqM-rrsIlINq7WPcygTgIWBlon1Do',
-  movies: 2,
-  eats: 3,
-  buys: 4,
+  yelp:'X0dL6JkQu1HPY_GBOtelCfxSgU3it0hPAOYPy99ciP5qaKNce1-vrh1AD_aI6hqTT5UIJt9Gi5HLlPzclzpCRU63AKi25bf1Fhc128ms3s3wgYxaN6SmRVci28qtXXYx',
   wolfram: '9YR6T5-RYTW4PTK83'
 }
 
 const apiUrls = {
-  reads: 'https://www.googleapis.com/books/v1/volumes',
-  movies: 2,
-  eats: 3,
-  buys: 4,
-  wolfram: 'http://api.wolframalpha.com/v2/query'//?input=pi&appid=9YR6T5-RYTW4PTK83&output=json'
+  yelp:'https://api.yelp.com/v3/businesses/search',
+  wolfram: 'http://api.wolframalpha.com/v2/query'
 }
 
-const getItems = function(type, query){
-  switch(type){
-    case 'reads'||'r':
-      return getReads(query);
-      break;
-    case 'movies'||'m':
-      console.log(query, type);
-      break;
-    case 'eats' || 'e':
-      console.log(query, type);
-      break;
-    case 'buys' || 'b':
-      console.log(query, type);
-      break;
+const returnWolframOptions = function(input, parseJson = true){
+  let optionsObject = {
+    uri: apiUrls.wolfram,
+      qs:{
+        input: input,
+        output: 'json',
+        appid: apiKeys.wolfram,
+        ignorecase: true,
+        podtimeout: '0',
+        formattimeout: '0',
+        translation: true,
+        assumption: `C.${input}-_*Movie`,
+        assumption: `C.${input}-_*Book`,
+        assumption: `C.${input}-_*FictionalCharacter`
+      },
+      json:parseJson
   }
+  return optionsObject;
 }
 
-const getReads =  async function(name_of_book){
-  let options = {
-    uri: apiUrls.reads,
+const returnYelpOptions = function(input, parseJson = true){
+  let optionsObject = {
+    uri: apiUrls.yelp,
+    headers:{
+      'Authorization':`Bearer ${apiKeys.yelp}`
+    },
     qs:{
-
-    }
+      term: input,
+      location: 'Toronto',
+      categories: 'food',
+      limit: 5
+    },
+    json:parseJson
   }
-  rp('')
+  return optionsObject;
 }
+
+
+
+// }
+
 
 module.exports = {
-
+  returnYelpOptions, returnWolframOptions
 }
+
