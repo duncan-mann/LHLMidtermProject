@@ -56,11 +56,21 @@ app.use("/api/users", usersRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  res.render("index");
+  const userId = req.session.userId;
+  if (userId) {
+    res.redirect('/todos');
+  } else {
+    res.render('index')
+  }
 });
 
 app.get('/register', (req, res) => {
-  res.render('register')
+  const userId = req.session.userId;
+  if (userId) {
+    res.redirect('/todos');
+  } else {
+    res.render('register')
+  }
 })
 
 app.get('/profile', (req, res) => {
@@ -186,7 +196,7 @@ app.post('/register', (req, res) => {
       if (result) {
         res.status(400).send('Username or email existed');
       } else {
-        helpers.addUser(newUser);
+       helpers.addUser(newUser).then( (user)=> {console.log('Added user->', user)});
        helpers.getUserByEmail(newUser.email)
         .then( (user)=> {
           req.session.userId = user.id;
