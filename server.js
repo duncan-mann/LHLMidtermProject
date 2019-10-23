@@ -30,12 +30,14 @@ app.use(morgan('dev'));
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use("/styles", sass({
   src: __dirname + "/styles",
   dest: __dirname + "/public/styles",
   debug: true,
-  outputStyle: 'expanded'
+  outputStyle: 'expanded',
 }));
+
 app.use(express.static("public"));
 
 // Separated Routes for each Resource
@@ -114,28 +116,6 @@ app.get("/todos/:category", (req, res) =>{
     }
 })
 
-app.get("/todos/complete", (req, res) => {
-  const userId = req.session.userId;
-  
-  if (userId) {
-
-  helpers.getUserToDos(userId)
-    .then( (results) => {
-      if (!results) {
-          helpers.getUserById(userId)
-          .then( (results) => {
-          console.log('results->', results);
-          res.render("completedItems", {results});
-        })
-      } else {
-          console.log('results->', results);
-          res.render("completedItems", {results});
-      }
-    });
-  } else {
-    res.redirect('/register')
-  }
-})
 
 app.get("/home", (req, res) => {
   res.render("index");
@@ -366,7 +346,7 @@ app.post('/testAPI', (req, res) => {
           }
         }).catch( (err) => {
           console.log(err);
-          res.redirect('/testFORM');
+          res.redirect('/todos');
         })
         // let templateVars = {
         //   category: ['Unknown'],
