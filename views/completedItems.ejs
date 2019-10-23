@@ -16,62 +16,9 @@
 
   <% include ./partials/_sidebar %>
   <% include ./partials/_topbar %>
+  <% include ./partials/_todosHeadComplete %>
 
-  <div class="container-fluid d-flex flex-row flex-wrap justify-content-around">
-    <h1>CompletedItems page!</h1>
-    <% for (let todo of results) { %>
-    <% if (todo.complete === true) { %>
-    <% if (todo.category === 'books') { %>
-    <div class="alert alert-primary to-do m-3 d-flex justify-content-between align-items-center" role="alert"
-      id="item<%= todo.id %>">
-      <%= todo.description %>
-      <i class="fa fa-book" aria-hidden="true"></i>
-      <form method="GET" action="/editToDo/<%= todo.id %>">
-        <button type="submit" class="btn btn-outline-dark btn-sm">Edit</button>
-      </form>
-      <form method="POST" action="/completeToDoItem/<%= todo.id %>">
-        <button type="submit" class="btn btn-outline-dark btn-sm">Done!</button>
-      </form>
-    </div>
-    <% } else if (todo.category === 'movies') { %>
-    <div class="alert alert-success to-do m-3 d-flex justify-content-between align-items-center" role="alert"
-      id="item<%= todo.id %>">
-      <%= todo.description %>
-      <i class="fa fa-film" aria-hidden="true"></i>
-      <form method="GET" action="/editToDo/<%= todo.id %>">
-        <button type="submit" class="btn btn-outline-dark btn-sm">Edit</button>
-      </form>
-      <form method="POST" action="/completeToDoItem/<%= todo.id %>">
-        <button type="submit" class="btn btn-outline-dark btn-sm">Done!</button>
-      </form>
-    </div>
-    <% } else if (todo.category === 'restaurant') { %>
-    <div class="alert alert-warning to-do m-3 d-flex justify-content-between align-items-center" role="alert"
-      id="item<%= todo.id %>">
-      <%= todo.description %>
-      <i class="fa fa-cutlery" aria-hidden="true "></i>
-      <form method="GET" action="/editToDo/<%= todo.id %>">
-        <button type="submit" class="btn btn-outline-dark btn-sm">Edit</button>
-      </form>
-      <form method="POST" action="/completeToDoItem/<%= todo.id %>">
-        <button type="submit" class="btn btn-outline-dark btn-sm">Done!</button>
-      </form>
-    </div>
-    <% } else if (todo.category === 'product') { %>
-    <div class="alert alert-danger to-do m-3 d-flex justify-content-between align-items-center" role="alert"
-      id="item<%= todo.id %>">
-      <%= todo.description %>
-      <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-      <form method="GET" action="/editToDo/<%= todo.id %>">
-        <button type="submit" class="btn btn-outline-dark btn-sm">Edit</button>
-      </form>
-      <form method="POST" action="/completeToDoItem/<%= todo.id %>">
-        <button type="submit" class="btn btn-outline-dark btn-sm">Done!</button>
-      </form>
-    </div>
-    <% } %>
-    <% } %>
-    <% } %>
+  
 
     <div id="searchbox">
       <div class="d-flex justify-content-center h-100">

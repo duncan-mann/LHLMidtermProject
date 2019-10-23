@@ -7,6 +7,7 @@ const getUserToDos = function(user_id) {
   FROM to_dos
   JOIN users ON to_dos.user_id = users.id
   WHERE user_id = $1
+  ORDER BY created_at
   `, [user_id])
   .then(res => {
     if (res.rows.length > 0) {
@@ -42,7 +43,8 @@ const comepleteToDoItem = function(toDoId) {
 
   return db.query(`
   UPDATE to_dos
-  SET complete = TRUE
+  SET complete = TRUE,
+  completed_at = NOW()
   WHERE id = $1`, [toDoId])
   .then(res => res.rows)
   .catch(e => console.error('query error: ', e.stack))
@@ -115,9 +117,10 @@ module.exports.generateRandomString = generateRandomString;
 const insertItemToDatabase = function(category, item, user) {
   // let user = req.session.userId
 
+
   return db.query(
-  `INSERT INTO to_dos (user_id, description, category)
-  VALUES ($1, $2, $3)`, [user, item, category])
+  `INSERT INTO to_dos (user_id, description, category, created_at)
+  VALUES ($1, $2, $3, NOW())`, [user, item, category])
   .then(res => res.rows)
   .catch(e => console.error('query error: ', e.stack))
 };

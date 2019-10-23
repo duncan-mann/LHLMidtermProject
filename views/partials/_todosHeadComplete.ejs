@@ -1,0 +1,39 @@
+
+    <!-- topbar-->
+      <div class="container-fluid d-flex flex-column flex-wrap align-items-center mt-3 todo-container-design bg-transparent">
+          <h3 class="m-3 border-bottom">Completed</h3>
+
+          <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Item</th>
+                  <th scope="col">Category</th>
+                  <th scope="col">Created On</th>
+                  <th scope="col">Completed On</th>
+                  <th scope="col">Add to list</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for (each of results) { %>
+                  <% if (each.complete === true) { %>
+                    <tr>
+                          <td><%= each.description %></td>
+                          <td><%= each.category %></td>
+                          <td><%= each.created_at.toString().slice(0,15) %></td>
+                          <td><%= each.completed_at.toString().slice(0,15) %></td>
+                          <td>
+                            <form method="POST" action="/addCompletedItem">
+                              <button class="btn btn-outline-dark mr-5" id="addButton"><i class="fa fa-plus" aria-hidden="true"></i> Add</a></button>
+                            </form>
+                          </td>
+                    </tr>
+                      <% } %>
+                    <% } %>
+              </tbody>
+            </table>
+        
+      </div>
+
+    </div>
+
+    

@@ -142,7 +142,7 @@ app.get("/todos/:category", (req, res) =>{
     }
 })
 
-app.get("/todos/complete", (req, res) => {
+app.get("/completed", (req, res) => {
   const userId = req.session.userId;
 
   if (userId) {
@@ -152,11 +152,9 @@ app.get("/todos/complete", (req, res) => {
       if (!results) {
           helpers.getUserById(userId)
           .then( (results) => {
-          console.log('results->', results);
           res.render("completedItems", {results});
         })
       } else {
-          console.log('results->', results);
           res.render("completedItems", {results});
       }
     });
@@ -194,6 +192,7 @@ app.get('/editToDo/:toDoId', (req, res) => {
             res.redirect("/register");
           }
     });
+
 
 app.post('/editToDo/:toDoId', (req, res) => {
     let toDoId = req.params.toDoId;
