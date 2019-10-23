@@ -6,10 +6,13 @@
   -o-transition: margin .25s ease-out;
   transition: margin .25s ease-out; }
   #sidebar-wrapper .sidebar-heading {
-    padding: 0.875rem 1.25rem;
-    font-size: 1.8rem; }
+    font-size: 1.8rem;
+    text-align: center;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem; }
   #sidebar-wrapper .list-group {
-    width: 18rem; }
+    width: 25rem;
+    cursor: pointer; }
     #sidebar-wrapper .list-group .hideIcon-sidebar {
       display: none; }
   #sidebar-wrapper .sidebar-button {
@@ -29,25 +32,62 @@
     min-width: 0;
     width: 100%; }
   #wrapper.toggled #sidebar-wrapper {
-    margin-left: -15rem; } }
+    margin-left: -22rem; } }
 
 .welcome {
   text-align: center; }
 
+.avatar-username {
+  margin: 1rem auto; }
+
+.list-group-item-action:hover {
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+  -webkit-transform-origin: left;
+  -ms-transform-origin: left;
+  transform-origin: left;
+  background-color: #414ebc;
+  color: whitesmoke;
+  -webkit-transition-duration: 0.4s;
+  -o-transition-duration: 0.4s;
+  transition-duration: 0.4s; }
+  .list-group-item-action:hover .sidebar-button {
+    color: white; }
+
 .to-do {
-  width: 45%; }
+  width: 40%;
+  -webkit-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s; }
+
+.to-do:hover {
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+  -webkit-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s; }
 
 .to-do button {
-  display: none; }
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: visibility 0s, opacity 0.5s linear;
+  -o-transition: visibility 0s, opacity 0.5s linear;
+  transition: visibility 0s, opacity 0.5s linear; }
 
 .to-do:hover button {
-  display: inline-block; }
+  visibility: visible;
+  opacity: 1; }
 
 .to-do:hover i {
-  display: none; }
+  opacity: 0;
+  -webkit-transition-duration: 0.4s;
+  -o-transition-duration: 0.4s;
+  transition-duration: 0.4s; }
 
 .to-do i {
-  display: inline-block; }
+  opacity: 1; }
 
 body, html {
   font-family: 'Playfair Display', sans-serif; }

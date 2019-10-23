@@ -1,105 +1,64 @@
-<!--sidebar-->
-<div class="d-flex" id="wrapper">
-    <div class="border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading">Welcome <span> <strong><%= results[0].first_name %></strong></span>
-      </div>
-      <div class="list-group list-group-flush d-flex flex-column">
-        <figure class="m-auto welcome">
-          <img src="https://picsum.photos/id/525/50" class="rounded-circle mx-auto">
-          <figcaption>@<%= results[0].username %></figcaption>
-        </figure>
-        <form method="GET" action="/todos" class="list-group-item list-group-item-action border-0 d-flex">
-          <button type="submit" class="sidebar-button mr-auto">DASHBOARD</button>
-          <i class="fa fa-home" aria-hidden="true"></i>
-        </form>
-        <form class="list-group-item list-group-item-action border-0 d-flex">
-          <button class="sidebar-button mr-auto">EAT</button>
-          <i class="fa fa-cutlery" aria-hidden="true"></i>
-        </form>
-        <form class="list-group-item list-group-item-action border-0 d-flex">
-          <button class="sidebar-button mr-auto">READ</button>
-          <i class="fa fa-book" aria-hidden="true"></i>
-        </form>
-        <form class="list-group-item list-group-item-action border-0 d-flex">
-          <button class="sidebar-button mr-auto">WATCH</button>
-          <i class="fa fa-film" aria-hidden="true"></i>
-        </form>
-        <form href="#" class="list-group-item list-group-item-action border-0 d-flex">
-          <button class="sidebar-button mr-auto">BUY</button>
-          <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-        </form>
-        <form id="logout" method="POST" action="/logout"
-          class="list-group-item list-group-item-action border-0 d-flex mt-5">
-          <button class="sidebar-button mr-auto" type="submit">Logout</button>
-          <i class="fa fa-sign-out" aria-hidden="true"></i>
-        </form>
-      </div>
-    </div>
-    <!-- /#sidebar-wrapper -->
 
     <!-- topbar-->
-    <div id="page-content-wrapper">
-      <nav class="navbar navbar-expand-lg py-4 border-bottom">
-        <button class="btn btn-outline-dark" id="menu-toggle"><i class="fa fa-bars" aria-hidden="true"></i>
-          TADA!</button>
-        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-          <li class="nav-item">
-            <button class="btn btn-outline-dark mr-5" id="addButton"><i class="fa fa-plus" aria-hidden="true"></i> Add</a></button>
-          </li>
-        </ul>
-      </nav>
-
-      <div class="container-fluid d-flex flex-row flex-wrap justify-content-around">
-
+      <div class="container-fluid d-flex flex-column flex-wrap align-items-center mt-3 todo-container-design bg-transparent">
+          <h3 class="m-3 border-bottom">TADA List</h3>
         <% for (let todo of results) { %>
         <% if (todo.complete === false) { %>
         <% if (todo.category === 'books') { %>
-        <div class="alert alert-primary to-do m-3 d-flex justify-content-between align-items-center" role="alert"
+        <div class="alert alert-success text-dark m-3 to-do d-flex align-items-center"
           id="item<%= todo.id %>">
-          <%= todo.description %>
-          <i class="fa fa-book" aria-hidden="true"></i>
-          <form method="GET" action="/editToDo/<%= todo.id %>">
-            <button type="submit" class="btn btn-outline-dark btn-sm">Edit</button>
-          </form>
-          <form method="POST" action="/completeToDoItem/<%= todo.id %>">
-            <button type="submit" class="btn btn-outline-dark btn-sm">Done!</button>
-          </form>
+          <h4 class="mr-auto"><%= todo.description %></h4>
+          <div class="d-flex flex-wrap">
+            <form method="GET" action="/editToDo/<%= todo.id %>" class="m-1">
+              <button type="submit" class="btn btn-outline-dark btn-sm">Edit</button>
+            </form>
+            <form method="POST" action="/completeToDoItem/<%= todo.id %>" class="m-1">
+              <button type="submit" class="btn btn-outline-dark btn-sm">Done!</button>
+              <i class="fa fa-book" aria-hidden="true"></i>
+            </form>
+          </div>
         </div>
         <% } else if (todo.category === 'movies') { %>
-        <div class="alert alert-success to-do m-3 d-flex justify-content-between align-items-center" role="alert"
+        <div class="alert alert-primary to-do m-3 d-flex align-items-center"
           id="item<%= todo.id %>">
-          <%= todo.description %>
-          <i class="fa fa-film" aria-hidden="true"></i>
-          <form method="GET" action="/editToDo/<%= todo.id %>">
-            <button type="submit" class="btn btn-outline-dark btn-sm">Edit</button>
-          </form>
-          <form method="POST" action="/completeToDoItem/<%= todo.id %>">
-            <button type="submit" class="btn btn-outline-dark btn-sm">Done!</button>
-          </form>
+          <h4 class="mr-auto"><%= todo.description %></h4>
+          <div class="d-flex flex-wrap">
+            <form method="GET" action="/editToDo/<%= todo.id %>" class="m-1">
+              <button type="submit" class="btn btn-outline-dark btn-sm">Edit</button>
+            </form>
+            <form method="POST" action="/completeToDoItem/<%= todo.id %>" class="m-1">
+              <button type="submit" class="btn btn-outline-dark btn-sm">Done!</button>
+              <i class="fa fa-film" aria-hidden="true"></i>
+            </form>
+          </div>
         </div>
         <% } else if (todo.category === 'restaurant') { %>
-        <div class="alert alert-warning to-do m-3 d-flex justify-content-between align-items-center" role="alert"
+        <div class="alert alert-warning to-do m-3 d-flex align-items-center"
           id="item<%= todo.id %>">
-          <%= todo.description %>
-          <i class="fa fa-cutlery" aria-hidden="true "></i>
-          <form method="GET" action="/editToDo/<%= todo.id %>">
-            <button type="submit" class="btn btn-outline-dark btn-sm">Edit</button>
-          </form>
-          <form method="POST" action="/completeToDoItem/<%= todo.id %>">
-            <button type="submit" class="btn btn-outline-dark btn-sm">Done!</button>
-          </form>
+          <h4 class="mr-auto"><%= todo.description %></h4>
+          <div class="d-flex flex-wrap">
+            <form method="GET" action="/editToDo/<%= todo.id %>" class="m-1">
+              <button type="submit" class="btn btn-outline-dark btn-sm">Edit</button>
+            </form>
+            <form method="POST" action="/completeToDoItem/<%= todo.id %>" class="m-1">
+              <button type="submit" class="btn btn-outline-dark btn-sm">Done!</button>
+              <i class="fa fa-cutlery" aria-hidden="true "></i>
+            </form>
+          </div>
         </div>
         <% } else if (todo.category === 'product') { %>
-        <div class="alert alert-danger to-do m-3 d-flex justify-content-between align-items-center" role="alert"
+        <div class="alert alert-info to-do m-3 d-flex align-items-center"
           id="item<%= todo.id %>">
-          <%= todo.description %>
-          <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-          <form method="GET" action="/editToDo/<%= todo.id %>">
-            <button type="submit" class="btn btn-outline-dark btn-sm">Edit</button>
-          </form>
-          <form method="POST" action="/completeToDoItem/<%= todo.id %>">
-            <button type="submit" class="btn btn-outline-dark btn-sm">Done!</button>
-          </form>
+          <h4 class="mr-auto"><%= todo.description %></h4>
+          <div class="d-flex flex-wrap">
+            <form method="GET" action="/editToDo/<%= todo.id %>" class="m-1">
+              <button type="submit" class="btn btn-outline-dark btn-sm">Edit</button>
+            </form>
+            <form method="POST" action="/completeToDoItem/<%= todo.id %>" class="m-1">
+              <button type="submit" class="btn btn-outline-dark btn-sm">Done!</button>
+              <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+            </form>
+          </div>
         </div>
         <% } %>
         <% } %>

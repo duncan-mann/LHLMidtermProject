@@ -1,21 +1,30 @@
 .to-do {
-  width: 45%;
+  width: 40%;
+  transition-duration: 0.3s;
 }
 
+.to-do:hover {
+  transform: scale(1.1);
+  transition-duration: 0.3s;
+}
 .to-do button {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
 };
 
 .to-do:hover button {
-  display: inline-block;
+  visibility: visible;
+  opacity: 1;
 };
 
 .to-do:hover i {
-  display: none;
+  opacity: 0;
+  transition-duration: 0.4s;
 }
 
 .to-do i {
-  display: inline-block;
+  opacity: 1;
 };
 
 
