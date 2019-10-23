@@ -71,7 +71,7 @@ app.get('/profile', (req, res) => {
     .then( (results) => {
     res.render("profile", {results});
   })
-  
+
  } else {
     res.redirect("/register")
   }
@@ -219,6 +219,10 @@ app.post('/completeToDoItem/:toDoId', (req, res) => {
   helpers.comepleteToDoItem(req.params.toDoId).then( ()=> {
     res.redirect('/todos');
   })
+})
+
+app.post('/editProfile', (req, res) => {
+  res.redirect('/todos');
 })
 
 app.post("/logout", (req, res) => {
