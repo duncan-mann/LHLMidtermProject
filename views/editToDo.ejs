@@ -17,10 +17,12 @@
     <div class="sidebar-heading">Welcome <span> <strong><%= results[0].first_name %></strong></span>
     </div>
     <div class="list-group list-group-flush d-flex flex-column">
-      <figure class="m-auto">
-        <img src="https://picsum.photos/id/525/50" class="rounded-circle mx-auto">
-        <figcaption>@<%= results[0].username %></figcaption>
-      </figure>
+        <figure class="m-auto">
+            <img src="https://picsum.photos/id/525/50" class="rounded-circle mx-auto">
+            <form method="GET" action="/profile">
+              <button type="submit">@<%= results[0].username %></a>
+            </form>
+          </figure>
       <form method="GET" action="/todos" class="list-group-item list-group-item-action border-0 d-flex">
         <button type="submit" class="sidebar-button mr-auto">DASHBOARD</button>
         <i class="fa fa-home" aria-hidden="true"></i>

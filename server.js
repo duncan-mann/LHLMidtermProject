@@ -232,7 +232,31 @@ app.post('/completeToDoItem/:toDoId', (req, res) => {
 })
 
 app.post('/editProfile', (req, res) => {
-  res.redirect('/todos');
+  let userId = req.session.userId;
+  let userInfo = req.body;
+  console.log(userInfo);
+
+  if (userInfo.password !== userInfo.confirm_password) {
+    res.status(400).send('Confirmed password did not match.')
+  }
+// If passwords match, hash password and then replace it in the userInfo object. 
+  userInfo.password = bcrypt.hashSync(userInfo.password, 10);
+  console.log('new password ->', userInfo.password);
+
+  helpers.checkEmailandUser(userInfo.username, userInfo.email)
+  .then(result => {
+
+    if (result) {
+      console.log('result->', result)
+      res.status(400).send('Username or email existed');
+    } else {
+      helpers.editProfile(userId, userInfo).then( (user)=> {
+        console.log('New user profile->', user)
+        res.redirect("/profile");        
+      });
+    };
+  });
+
 })
 
 app.post("/logout", (req, res) => {
