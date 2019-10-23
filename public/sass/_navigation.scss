@@ -1,27 +1,28 @@
 #sidebar-wrapper {
   min-height: 100vh;
   margin-left: -15rem;
-  -webkit-transition: margin .25s ease-out;
-  -moz-transition: margin .25s ease-out;
-  -o-transition: margin .25s ease-out;
   transition: margin .25s ease-out;
 
   .sidebar-heading {
-    padding: 0.875rem 1.25rem;
-    font-size: 1.2rem;
+    font-size: 1.8rem;
+    text-align: center;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
   };
 
   .list-group {
-    width: 18rem;
+    width: 25rem;
+    cursor: pointer;
     .hideIcon-sidebar {
       display: none;
     }
-  };
+  }
 
   .sidebar-button {
     border: none;
     background: transparent;
   }
+
 }
 
 #page-content-wrapper {
@@ -43,6 +44,25 @@
   }
 
   #wrapper.toggled #sidebar-wrapper {
-    margin-left: -15rem;
+    margin-left: -22rem;
+  }
+}
+
+.welcome {
+  text-align: center;
+}
+
+.avatar-username {
+  margin: 1rem auto;
+}
+
+.list-group-item-action:hover {
+  transform: scale(1.1);
+  transform-origin: left;
+  background-color: rgb(65, 78, 188);
+  color: whitesmoke;
+  transition-duration: 0.4s;
+  .sidebar-button {
+    color: white;
   }
 }

@@ -65,7 +65,7 @@ app.get('/register', (req, res) => {
 
 app.get("/todos", (req, res) => {
   const userId = req.session.userId;
-  
+
   if (userId) {
 
   helpers.getUserToDos(userId)
@@ -116,6 +116,28 @@ app.get("/todos/:category", (req, res) =>{
     }
 })
 
+app.get("/todos/complete", (req, res) => {
+  const userId = req.session.userId;
+
+  if (userId) {
+
+  helpers.getUserToDos(userId)
+    .then( (results) => {
+      if (!results) {
+          helpers.getUserById(userId)
+          .then( (results) => {
+          console.log('results->', results);
+          res.render("completedItems", {results});
+        })
+      } else {
+          console.log('results->', results);
+          res.render("completedItems", {results});
+      }
+    });
+  } else {
+    res.redirect('/register')
+  }
+})
 
 app.get("/home", (req, res) => {
   res.render("index");
@@ -175,7 +197,7 @@ app.post('/register', (req, res) => {
        helpers.getUserByEmail(newUser.email)
         .then( (user)=> {
           req.session.userId = user.id;
-          res.redirect("/todos");        
+          res.redirect("/todos");
         });
         };
       })

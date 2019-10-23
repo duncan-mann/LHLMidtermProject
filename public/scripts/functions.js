@@ -16,28 +16,38 @@ $("#menu-toggle").click(function (e) {
   })
 
   //click icon
-$('#logout').on('click', (e)=>{
-  if($(this).hasClass('.button-logout')) {
-    $('.button-logout').trigger('click');
-    }
+  $('#logout').on('click', (e)=>{
+    $('#logout').submit();
   })
 
+  $('#dashboard').on('click', (e)=>{
+    $('#dashboard').submit();
+  })
+
+  $('#readButton').on('click', (e)=>{
+    $('#readButton').submit();
+  })
+
+  $('#eatButton').on('click', (e)=>{
+    $('#eatButton').submit();
+  })
+
+  $('#watchButton').on('click', (e)=>{
+    $('#watchButton').submit();
+  })
+
+  $('#buyButton').on('click', (e)=>{
+    $('#eatButton').submit();
+  })
+
+  // $('#otherButton').on('click', (e)=>{
+  //   $('#otherButton').submit();
+  // })
 
 })
 
 
-//slide register
-const signUpButton = document.getElementById("signUp");
-const signInButton = document.getElementById("signIn");
-const container = document.getElementById("container");
 
-signUpButton.addEventListener("click", () => {
-  container.classList.add("right-panel-active");
-});
-
-signInButton.addEventListener("click", () => {
-  container.classList.remove("right-panel-active");
-});
 
 
 

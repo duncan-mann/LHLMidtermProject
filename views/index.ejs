@@ -5,45 +5,64 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="static/public/styles/style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="/styles/style.css" type="text/css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <title>Document</title>
 </head>
 
-<div id="page-content-wrapper">
-  <nav class="navbar navbar-expand-lg navbar-light bg-danger">
-    <h4 class="text-light">TADA!</h4>
-    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-      <li class="nav-item">
-        <a class="btn text-light" href="/register"> <i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
-      </li>
-      <li class="nav-item">
-        <a class="btn text-light" href="/register">REGISTER</a>
-      </li>
-    </ul>
-  </nav>
-</div>
-
 <body>
-  <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <h1 class="display-4">Tada</h1>
-      <p class="lead">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequuntur ullam fugit ratione aliquid hic praesentium itaque aspernatur enim neque quia nihil, at doloremque quam minus sapiente tempora? Consequatur, debitis ipsam!</p>
+  <div id="page-content-wrapper" class="navigation">
+    <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 border-bottom">
+      <h4 id="icon">TADA!</h4>
+      <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+        <li class="nav-item">
+          <a class="btn btn-outline-dark" href="/register"> <i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-outline-dark ml-3" href="/register">Register</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <div id="hero">
+    <div class="intro">
+      <div class="introduction">
+        <h3>Introduction</h3>
+        <h7>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae aliquam magni voluptate!</h7>
+      </div>
+    </div>
+    <div class="blank">
+
     </div>
   </div>
 
-
+  <canvas class="background-canvas"></canvas>
+  <script src="path/to/particles.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.min.js"></script>
+  <script href="../scripts/functions.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>  <script>
-    $("#menu-toggle").click(function (e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
-    })
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script>
+    window.onload = function () {
+      Particles.init({
+        selector: '.background-canvas',
+        minDistance: 120,
+        connectParticles: true,
+      });
+    }
   </script>
-  <script href="static/public/scripts/functions.js"></script>
 </body>
 
 </html>
