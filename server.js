@@ -63,6 +63,21 @@ app.get('/register', (req, res) => {
   res.render('register')
 })
 
+app.get('/profile', (req, res) => {
+  const userId = req.session.userId;
+
+  if (userId) {
+    helpers.getUserById(userId)
+    .then( (results) => {
+    res.render("profile", {results});
+  })
+  
+ } else {
+    res.redirect("/register")
+  }
+
+})
+
 app.get("/todos", (req, res) => {
   const userId = req.session.userId;
   
