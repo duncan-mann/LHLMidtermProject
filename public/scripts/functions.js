@@ -4,6 +4,11 @@ $("#menu-toggle").click(function (e) {
     e.preventDefault();
     $("#wrapper").toggleClass("toggled");
   })
+
+  $('#wrapper-todo').click((e)=>{
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+  })
 //search bottom
   $("#addButton").click(function(e) {
     $("#searchbox").fadeIn(500);
@@ -40,10 +45,9 @@ $("#menu-toggle").click(function (e) {
     $('#eatButton').submit();
   })
 
-  // $('#otherButton').on('click', (e)=>{
-  //   $('#otherButton').submit();
-  // })
-
+  $('#profileForm').on('click', (e)=>{
+    $('#profileForm').submit();
+  })
 })
 
 
