@@ -43,7 +43,8 @@ const comepleteToDoItem = function(toDoId) {
 
   return db.query(`
   UPDATE to_dos
-  SET complete = TRUE
+  SET complete = TRUE,
+  completed_at = NOW()
   WHERE id = $1`, [toDoId])
   .then(res => res.rows)
   .catch(e => console.error('query error: ', e.stack))

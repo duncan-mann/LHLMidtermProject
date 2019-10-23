@@ -1,100 +1,39 @@
 
     <!-- topbar-->
       <div class="container-fluid d-flex flex-column flex-wrap align-items-center mt-3 todo-container-design bg-transparent">
-          <h3 class="m-3 border-bottom">TADA List</h3>
-        <% for (let todo of results) { %>
-        <% if (todo.complete === true) { %>
-        <% if (todo.category === 'books') { %>
-        <div class="alert alert-success text-dark m-3 to-do d-flex align-items-center"
-          id="item<%= todo.id %>">
-          <h4 class="mr-auto"><%= todo.description %></h4>
-          <div class="d-flex flex-wrap">
-            <form method="GET" action="/editToDo/<%= todo.id %>" class="m-1">
-              <button type="submit" class="btn btn-outline-dark btn-sm">Info</button>
-            </form>
-            <form method="POST" action="/completeToDoItem/<%= todo.id %>" class="m-1">
-              <button type="submit" class="btn btn-outline-dark btn-sm">Done!</button>
-              <i class="fa fa-book" aria-hidden="true"></i>
-            </form>
-          </div>
-        </div>
-        <% } else if (todo.category === 'movies') { %>
-        <div class="alert alert-primary to-do m-3 d-flex align-items-center"
-          id="item<%= todo.id %>">
-          <h4 class="mr-auto"><%= todo.description %></h4>
-          <div class="d-flex flex-wrap">
-            <form method="GET" action="/editToDo/<%= todo.id %>" class="m-1">
-              <button type="submit" class="btn btn-outline-dark btn-sm">Info</button>
-            </form>
-            <form method="POST" action="/completeToDoItem/<%= todo.id %>" class="m-1">
-              <button type="submit" class="btn btn-outline-dark btn-sm">Done!</button>
-              <i class="fa fa-film" aria-hidden="true"></i>
-            </form>
-          </div>
-        </div>
-        <% } else if (todo.category === 'restaurant') { %>
-        <div class="alert alert-warning to-do m-3 d-flex align-items-center"
-          id="item<%= todo.id %>">
-          <h4 class="mr-auto"><%= todo.description %></h4>
-          <div class="d-flex flex-wrap">
-            <form method="GET" action="/editToDo/<%= todo.id %>" class="m-1">
-              <button type="submit" class="btn btn-outline-dark btn-sm">Info</button>
-            </form>
-            <form method="POST" action="/completeToDoItem/<%= todo.id %>" class="m-1">
-              <button type="submit" class="btn btn-outline-dark btn-sm">Done!</button>
-              <i class="fa fa-cutlery" aria-hidden="true "></i>
-            </form>
-          </div>
-        </div>
-        <% } else if (todo.category === 'product') { %>
-        <div class="alert alert-info to-do m-3 d-flex align-items-center"
-          id="item<%= todo.id %>">
-          <h4 class="mr-auto"><%= todo.description %></h4>
-          <div class="d-flex flex-wrap">
-            <form method="GET" action="/editToDo/<%= todo.id %>" class="m-1">
-              <button type="submit" class="btn btn-outline-dark btn-sm">Info</button>
-            </form>
-            <form method="POST" action="/completeToDoItem/<%= todo.id %>" class="m-1">
-              <button type="submit" class="btn btn-outline-dark btn-sm">Done!</button>
-              <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-            </form>
-          </div>
-        </div>
-        <% } %>
-        <% } %>
-        <% } %>
+          <h3 class="m-3 border-bottom">Completed</h3>
 
+          <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Item</th>
+                  <th scope="col">Category</th>
+                  <th scope="col">Created On</th>
+                  <th scope="col">Completed On</th>
+                  <th scope="col">Add to list</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for (each of results) { %>
+                  <% if (each.complete === true) { %>
+                    <tr>
+                          <td><%= each.description %></td>
+                          <td><%= each.category %></td>
+                          <td><%= each.created_at.toString().slice(0,15) %></td>
+                          <td><%= each.completed_at.toString().slice(0,15) %></td>
+                          <td>
+                            <form method="POST" action="/addCompletedItem">
+                              <button class="btn btn-outline-dark mr-5" id="addButton"><i class="fa fa-plus" aria-hidden="true"></i> Add</a></button>
+                            </form>
+                          </td>
+                    </tr>
+                      <% } %>
+                    <% } %>
+              </tbody>
+            </table>
+        
       </div>
 
     </div>
 
-    <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Item</th>
-            <th scope="col">Category</th>
-            <th scope="col">Completed On</th>
-            <th scope="col">Add to list</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Examp</td>
-            <td>Examp2</td>
-            <td>Examp3</td>
-            <td>Examp4</td>
-          </tr>
-          <tr>
-              <td>Examp</td>
-              <td>Examp2</td>
-              <td>Examp3</td>
-              <td>Examp4</td>
-          </tr>
-          <tr>
-              <td>Examp</td>
-              <td>Examp2</td>
-              <td>Examp3</td>
-              <td>Examp4</td>
-          </tr>
-        </tbody>
-      </table>
+    

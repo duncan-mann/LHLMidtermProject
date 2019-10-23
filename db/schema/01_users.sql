@@ -18,5 +18,6 @@ CREATE TABLE to_dos (
   description VARCHAR(255) NOT NULL,
   category VARCHAR(255) NOT NULL,
   complete BOOLEAN DEFAULT FALSE,
-  created_at TIMESTAMP DEFAULT NOW()
+  created_at TIMESTAMP DEFAULT NOW(),
+  completed_at TIMESTAMP
 );
