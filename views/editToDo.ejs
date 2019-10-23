@@ -12,6 +12,7 @@
   <title>Document</title>
 </head>
 <!--sidebar-->
+
 <% include ./partials/_sidebar %>
 <% include ./partials/_topbar %>
 
@@ -22,7 +23,7 @@
     <form method="POST" action="/editToDo/<%= toDoItem.id %>" id='editToDo'>
       <div class="row">
         <label for="toDoItem">Description</label>
-        <input type="text" class="form-control" name="toDoItem">
+        <input type="text" class="form-control" name="toDoItem" value="<%= toDoItem.description %>">
       </div>
       <div class="row">
         <label for="category">Category</label>
@@ -42,7 +43,7 @@
       <div class="searchbar">
         <span class="heart">♥</span>
         <form action="/testAPI" method="POST" name="toCategorize">
-          <input class="search_input" type="text" name="input" placeholder="Add to your todo list">
+          <input class="search_input" type="text" name="input" placeholder=" Add to your TADA list">
           <button type="submit" name="type" value="search" class="search_icon"><i class="fa fa-search"></i></button>
         </form>
       </div>

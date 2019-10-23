@@ -137,3 +137,21 @@ const editToDoItem = function(toDoId, newDescription, newCategory) {
 }
 
 module.exports.editToDoItem = editToDoItem;
+
+const editProfile = function(userId, userInfo) {
+
+  return db.query( 
+    `UPDATE users
+    SET first_name = $2,
+    last_name = $3,
+    email = $4, 
+    username = $5,
+    password = $6
+    WHERE id = $1
+    `, [userId, userInfo.firstname, userInfo.lastname, userInfo.email, userInfo.username, userInfo.password])
+    .then(res => res.rows)
+    .catch(e => console.error('query error: ', e.stack))
+
+}
+
+module.exports.editProfile = editProfile;

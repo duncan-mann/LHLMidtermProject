@@ -56,11 +56,36 @@ app.use("/api/users", usersRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  res.render("index");
+  const userId = req.session.userId;
+  if (userId) {
+    res.redirect('/todos');
+  } else {
+    res.render('index')
+  }
 });
 
 app.get('/register', (req, res) => {
-  res.render('register')
+  const userId = req.session.userId;
+  if (userId) {
+    res.redirect('/todos');
+  } else {
+    res.render('register')
+  }
+})
+
+app.get('/profile', (req, res) => {
+  const userId = req.session.userId;
+
+  if (userId) {
+    helpers.getUserById(userId)
+    .then( (results) => {
+    res.render("profile", {results});
+  })
+
+ } else {
+    res.redirect("/register")
+  }
+
 })
 
 app.get("/todos", (req, res) => {
@@ -193,7 +218,7 @@ app.post('/register', (req, res) => {
       if (result) {
         res.status(400).send('Username or email existed');
       } else {
-        helpers.addUser(newUser);
+       helpers.addUser(newUser).then( (user)=> {console.log('Added user->', user)});
        helpers.getUserByEmail(newUser.email)
         .then( (user)=> {
           req.session.userId = user.id;
@@ -226,6 +251,34 @@ app.post('/completeToDoItem/:toDoId', (req, res) => {
   helpers.comepleteToDoItem(req.params.toDoId).then( ()=> {
     res.redirect('/todos');
   })
+})
+
+app.post('/editProfile', (req, res) => {
+  let userId = req.session.userId;
+  let userInfo = req.body;
+  console.log(userInfo);
+
+  if (userInfo.password !== userInfo.confirm_password) {
+    res.status(400).send('Confirmed password did not match.')
+  }
+// If passwords match, hash password and then replace it in the userInfo object. 
+  userInfo.password = bcrypt.hashSync(userInfo.password, 10);
+  console.log('new password ->', userInfo.password);
+
+  helpers.checkEmailandUser(userInfo.username, userInfo.email)
+  .then(result => {
+
+    if (result) {
+      console.log('result->', result)
+      res.status(400).send('Username or email existed');
+    } else {
+      helpers.editProfile(userId, userInfo).then( (user)=> {
+        console.log('New user profile->', user)
+        res.redirect("/profile");        
+      });
+    };
+  });
+
 })
 
 app.post("/logout", (req, res) => {
