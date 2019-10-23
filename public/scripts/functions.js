@@ -5,10 +5,6 @@ $("#menu-toggle").click(function (e) {
     $("#wrapper").toggleClass("toggled");
   })
 
-  $('#wrapper-todo').click((e)=>{
-    e.preventDefault();
-    $("#wrapper").toggleClass("toggled");
-  })
 //search bottom
   $("#addButton").click(function(e) {
     $("#searchbox").fadeIn(500);
