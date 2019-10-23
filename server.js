@@ -261,7 +261,7 @@ app.post('/editProfile', (req, res) => {
   if (userInfo.password !== userInfo.confirm_password) {
     res.status(400).send('Confirmed password did not match.')
   }
-// If passwords match, hash password and then replace it in the userInfo object. 
+// If passwords match, hash password and then replace it in the userInfo object.
   userInfo.password = bcrypt.hashSync(userInfo.password, 10);
   console.log('new password ->', userInfo.password);
 
@@ -274,7 +274,7 @@ app.post('/editProfile', (req, res) => {
     } else {
       helpers.editProfile(userId, userInfo).then( (user)=> {
         console.log('New user profile->', user)
-        res.redirect("/profile");        
+        res.redirect("/profile");
       });
     };
   });

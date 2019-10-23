@@ -59,7 +59,7 @@
   </div>
 
   <canvas class="background-canvas"></canvas>
-  <script src="path/to/particles.min.js"></script>
+  <!-- <script src="path/to/particles.min.js"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.min.js"></script>
   <script src="../scripts/functions.js"></script>
   <script>
@@ -68,7 +68,21 @@
         selector: '.background-canvas',
         minDistance: 120,
         connectParticles: true,
-      });
+        color: ['#cccc00', '#000066', '#cc0000'],
+        size: 3,
+        speed: 0.8,
+        maxParticles: 50,
+        responsive: [
+          {
+            breakpoint: 768,
+            options: {
+              maxParticles: 120,
+              color: ['#cccc00', '#000066', '#cc0000'],
+              connectParticles: false
+            }
+          }
+        ]
+      })
     }
   </script>
   <script>
