@@ -1,10 +1,10 @@
 <!--sidebar-->
 <div class="d-flex" id="wrapper">
-    <div class="border-right bg-white" id="sidebar-wrapper">
+    <div class="border-right" id="sidebar-wrapper">
       <div class="sidebar-heading">Welcome <span> <strong><%= results[0].first_name %></strong></span>
       </div>
       <div class="list-group list-group-flush d-flex flex-column">
-        <figure class="m-auto">
+        <figure class="m-auto welcome">
           <img src="https://picsum.photos/id/525/50" class="rounded-circle mx-auto">
           <figcaption>@<%= results[0].username %></figcaption>
         </figure>
@@ -39,12 +39,12 @@
 
     <!-- topbar-->
     <div id="page-content-wrapper">
-      <nav class="navbar navbar-expand-lg navbar-light bg-danger">
-        <button class="btn btn-danger text-light" id="menu-toggle"><i class="fa fa-bars" aria-hidden="true"></i>
+      <nav class="navbar navbar-expand-lg py-4 border-bottom">
+        <button class="btn btn-outline-dark" id="menu-toggle"><i class="fa fa-bars" aria-hidden="true"></i>
           TADA!</button>
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
           <li class="nav-item">
-            <a class="btn text-light" id="addButton"><i class="fa fa-plus" aria-hidden="true"></i> Add</a>
+            <button class="btn btn-outline-dark mr-5" id="addButton"><i class="fa fa-plus" aria-hidden="true"></i> Add</a></button>
           </li>
         </ul>
       </nav>
