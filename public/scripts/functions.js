@@ -1,9 +1,10 @@
 //toggle menu
 $(document).ready(function() {
+
 $("#menu-toggle").click(function (e) {
     e.preventDefault();
     $("#wrapper").toggleClass("toggled");
-  })
+  }).click()
 
 //search bottom
   $("#addButton").click(function(e) {
@@ -58,8 +59,8 @@ $("#menu-toggle").click(function (e) {
     $('.sign-up-container').fadeIn('slow');
     $('.sign-in-container').fadeOut('slow');
   })
-})
 
+})
 
 
 
