@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
+    "start": "pm2-runtime start ecosystem.config.js --env production",
     "local": "./node_modules/.bin/nodemon -L --ignore public/",
     "db:reset": "node bin/resetdb.js",
     "apitest": "./node_modules/.bin/nodemon -L testserver.js --ignore public/"
@@ -25,6 +25,7 @@
     "particlesjs": "^2.2.3",
     "pg": "^6.4.2",
     "pg-native": "^3.0.0",
+    "pm2": "^4.1.2",
     "request": "^2.88.0",
     "request-promise": "^4.2.4"
   },

@@ -238,10 +238,10 @@ app.post('/loginUser', (req, res) => {
     if (user === undefined || !bcrypt.compareSync(req.body.password, user.password)) {
       res.render('register', {password: false});
     }
-    
+
     req.session.userId = user.id;
     res.redirect('/todos');
-    
+
   })
   .catch(e => console.error('Login Error:' , e.stack))
 });
@@ -285,7 +285,7 @@ app.post("/reAddItem/:toDoId", (req, res) => {
         res.redirect('/todos')
       })
   }
-  
+
 })
 
 app.post("/logout", (req, res) => {
@@ -349,23 +349,7 @@ app.post('/testAPI', (req, res) => {
   }
   else // if user does not provide a read/buy/watch/eat keyword
   {
-    // let wolframOptions = {
-    //   uri: 'http://api.wolframalpha.com/v2/query',
-    //   qs:{
-    //     input: textInput,
-    //     output: 'json',
-    //     appid: '9YR6T5-RYTW4PTK83',
-    //     ignorecase: true,
-    //     podtimeout: '0',
-    //     formattimeout: '0',
-    //     translation: true,
-    //     assumption: `C.${textInput}-_*Movie`,
-    //     assumption: `C.${textInput}-_*Book`,
-    //     // assumption: `C.${textInput}-_*FictionalCharacter`,
-    //     // assumption: `C.${textInput}-_*ConsumerProductsPTE`
-    //   },
-    //   json:true
-    // }
+
 
     let wolframOptions = apiHelpers.returnWolframOptions(textInput);
 
@@ -398,19 +382,7 @@ app.post('/testAPI', (req, res) => {
       else //if the textInput is not a book, movie or TV show
       {
 
-        // let yelpOptions = {
-        //   uri: 'https://api.yelp.com/v3/businesses/search',
-        //   headers:{
-        //     'Authorization':'Bearer X0dL6JkQu1HPY_GBOtelCfxSgU3it0hPAOYPy99ciP5qaKNce1-vrh1AD_aI6hqTT5UIJt9Gi5HLlPzclzpCRU63AKi25bf1Fhc128ms3s3wgYxaN6SmRVci28qtXXYx'
-        //   },
-        //   qs:{
-        //     term: textInput,
-        //     location: 'Toronto',
-        //     categories: 'food',
-        //     limit: 5
-        //   },
-        //   json:true
-        // }
+
 
         let yelpOptions = apiHelpers.returnYelpOptions(textInput);
 
@@ -434,16 +406,12 @@ app.post('/testAPI', (req, res) => {
           console.log(err);
           res.redirect('/todos');
         })
-        // let templateVars = {
-        //   category: ['Unknown'],
-        //   output: textInput
-        // }
-        // res.render('testRESULT', templateVars);
+
       }
       console.log('TOTAL DATA =', data);
       console.log('TYPESSTRING = ',typesString);
 
-      //console.log('TEMPLATEVARS =', templateVars);
+
 
     }).catch((err) => {
       console.log(err);
