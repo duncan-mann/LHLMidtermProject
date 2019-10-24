@@ -41,6 +41,10 @@ $("#menu-toggle").click(function (e) {
     $('#buyButton').submit();
   })
 
+  $('#completeButton').on('click', (e)=>{
+    $('#completeButton').submit();
+  })
+
   $('#profileForm').on('click', (e)=>{
     $('#profileForm').submit();
   })
