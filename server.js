@@ -115,14 +115,15 @@ app.get("/todos/:category", (req, res) =>{
   const userId = req.session.userId;
   let urlCategory = req.params.category;
   let category;
+  console.log('category->', urlCategory);
 
   if (urlCategory === 'read') {
     category = 'books';
   } else if (urlCategory === 'watch') {
     category = 'movies';
-  } else if (urlCategory === 'eat') {
+  }  else if (urlCategory === 'eat') {
     category = 'restaurant';
-  } else if (urlCategory === 'buy') {
+  }  else if (urlCategory === 'buy') {
     category = 'product';
   }
   if (userId) {
@@ -234,18 +235,13 @@ app.post('/loginUser', (req, res) => {
   helpers.getUserByEmail(req.body.email)
     .then( (user) => {
 
-    if (user === undefined) {
-      let login = {password: false};
-      res.render('register', login);
+    if (user === undefined || !bcrypt.compareSync(req.body.password, user.password)) {
+      res.render('register', {password: false});
     }
-
-    if (bcrypt.compareSync(req.body.password, user.password)) {
-      req.session.userId = user.id;
-      res.redirect('/todos');
-    } else {
-      let login = {password: false};
-      res.render('register', login);
-    }
+    
+    req.session.userId = user.id;
+    res.redirect('/todos');
+    
   })
   .catch(e => console.error('Login Error:' , e.stack))
 });
@@ -280,9 +276,15 @@ app.post('/editProfile', (req, res) => {
 });
 
 app.post("/reAddItem/:toDoId", (req, res) => {
-  let userId = req.session.userId;
-  let todoId = req.params.toDoId;
+  const userId = req.session.userId;
+  const toDoId = req.params.toDoId;
 
+  if (userId) {
+    helpers.reAddItem(toDoId)
+      .then( ()=> {
+        res.redirect('/todos')
+      })
+  }
   
 })
 

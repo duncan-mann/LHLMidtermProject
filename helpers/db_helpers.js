@@ -162,7 +162,7 @@ module.exports.editProfile = editProfile;
 const reAddItem = function(toDoId) {
   return db.query( 
     `UPDATE to_dos
-    SET completed = false,
+    SET complete = false,
     completed_at = NULL
     WHERE to_dos.id = $1
     `, [toDoId])

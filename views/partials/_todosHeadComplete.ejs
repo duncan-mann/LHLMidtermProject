@@ -19,16 +19,16 @@
                     <tr>
                           <td><%= each.description %></td>
                           <% if (each.category === 'movies') { %>
-                            <td>Movie</td>
+                            <td>Watch</td>
                             <% } %>
                           <% if (each.category === 'books') { %>
-                            <td>Book</td>
+                            <td>Read</td>
                             <% } %>
                           <% if (each.category === 'restaurant') { %>
-                            <td>Restaurant</td>
+                            <td>Eat</td>
                             <% } %>
                           <% if (each.category === 'product') { %>
-                             <td>Product</td>
+                             <td>Buy</td>
                             <% } %>
                           <td><%= each.created_at.toString().slice(0,15) %></td>
                           <td><%= each.completed_at.toString().slice(0,15) %></td>
