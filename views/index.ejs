@@ -27,7 +27,7 @@
             <a class="btn btn-outline-dark mr-3 mb-2" href="/register"> <i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
           </li>
           <li class="nav-item">
-            <a class="btn btn-outline-dark" href="/register">Register</a>
+            <a class="btn btn-outline-dark" id='registerTopBar' href="/register">Register</a>
           </li>
         </ul>
       </div>
@@ -60,24 +60,26 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
-  <script>
-    window.onload = function () {
-      Particles.init({
-        selector: '.background-canvas',
-        minDistance: 120,
-        connectParticles: true,
-        responsive: [
-          {
-            breakpoint: 700,
-            options: {
-              maxParticles: 80,
-              connectParticles: false
-            }
-          }
-        ]
-      });
-    }
-  </script>
+    <script>
+        window.onload = function () {
+          Particles.init({
+            selector: '.background-canvas',
+            minDistance: 120,
+            connectParticles: true,
+            speed: 0.8,
+            maxParticles: 50,
+            responsive: [
+              {
+                breakpoint: 768,
+                options: {
+                  maxParticles: 80,
+                  connectParticles: false
+                }
+              }
+            ]
+          })
+        }
+      </script>
 </body>
 
 </html>
