@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Playfair+Display&display=swap");
 #sidebar-wrapper {
   min-height: 100vh;
-  margin-left: -15rem;
   -webkit-transition: margin .25s ease-out;
   -o-transition: margin .25s ease-out;
   transition: margin .25s ease-out; }
@@ -609,6 +608,8 @@ button:focus {
 @media (max-width: 600px) {
   #sidebar-wrapper {
     min-height: 100vh;
+    width: 100vw;
+    min-width: 380px;
     margin-left: -25rem;
     -webkit-transition: margin .25s ease-out;
     -o-transition: margin .25s ease-out;
@@ -619,7 +620,8 @@ button:focus {
       padding-top: 1.5rem;
       padding-bottom: 1.5rem; }
     #sidebar-wrapper .list-group {
-      width: 20rem; }
+      width: 20rem;
+      margin-left: 3rem; }
   #wrapper.toggled #sidebar-wrapper {
     margin-left: 0; } }
 
