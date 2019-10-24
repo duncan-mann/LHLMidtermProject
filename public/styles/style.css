@@ -4,8 +4,7 @@
   margin-left: -15rem;
   -webkit-transition: margin .25s ease-out;
   -o-transition: margin .25s ease-out;
-  transition: margin .25s ease-out;
-  background-color: white;}
+  transition: margin .25s ease-out; }
   #sidebar-wrapper .sidebar-heading {
     font-size: 1.8rem;
     text-align: center;
@@ -25,7 +24,6 @@
 
 #wrapper.toggled #sidebar-wrapper {
   margin-left: 0; }
-
 
 @media (min-width: 768px) {
   #sidebar-wrapper {
@@ -71,10 +69,10 @@
     color: white; }
 
 .top-bar {
-  background: -webkit-gradient(linear, left top, right top, color-stop(5%, #949cc1), color-stop(22%, #43508b), color-stop(55%, #03071c), color-stop(70%, #2b3b6a), color-stop(80%, #314986), to(#e1e8f7));
-  background: -webkit-linear-gradient(left, #949cc1 5%, #43508b 22%, #03071c 55%, #2b3b6a 70%, #314986 80%, #e1e8f7 100%);
-  background: -o-linear-gradient(left, #949cc1 5%, #43508b 22%, #03071c 55%, #2b3b6a 70%, #314986 80%, #e1e8f7 100%);
-  background: linear-gradient(90deg, #949cc1 5%, #43508b 22%, #03071c 55%, #2b3b6a 70%, #314986 80%, #e1e8f7 100%); }
+  background: -webkit-gradient(linear, left top, right top, color-stop(5%, #949cc1), to(#e1e8f7));
+  background: -webkit-linear-gradient(left, #949cc1 5%, #e1e8f7 100%);
+  background: -o-linear-gradient(left, #949cc1 5%, #e1e8f7 100%);
+  background: linear-gradient(90deg, #949cc1 5%, #e1e8f7 100%); }
 
 .to-do {
   width: 70%;
