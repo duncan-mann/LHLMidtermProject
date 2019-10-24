@@ -18,8 +18,10 @@
 
 <body>
 
-  <div class="p-5">
-    <h3 class="border-bottom font-weight-bold">Edit <%= toDoItem.description %></h3>
+  <div class="p-5 d-flex flex-column justify-content-center">
+    <div class="w-75">
+    <h3 class="border-bottom font-weight-bold"><%= toDoItem.description %></h3>
+    <p>Created on <%= toDoItem.created_at.toString().slice(0,15) %></p>
     <form method="POST" action="/editToDo/<%= toDoItem.id %>" id='editToDo'>
       <div class="row">
         <label for="toDoItem">Description</label>
@@ -52,6 +54,7 @@
         <button type="submit" class="btn btn-outline-primary mt-3">Submit</button>
       </div>
     </form>
+  </div>
   </div>
 
   <div id="searchbox">
