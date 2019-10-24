@@ -4,7 +4,8 @@
   margin-left: -15rem;
   -webkit-transition: margin .25s ease-out;
   -o-transition: margin .25s ease-out;
-  transition: margin .25s ease-out; }
+  transition: margin .25s ease-out;
+  background-color: white;}
   #sidebar-wrapper .sidebar-heading {
     font-size: 1.8rem;
     text-align: center;
@@ -24,6 +25,7 @@
 
 #wrapper.toggled #sidebar-wrapper {
   margin-left: 0; }
+
 
 @media (min-width: 768px) {
   #sidebar-wrapper {

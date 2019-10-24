@@ -158,3 +158,16 @@ const editProfile = function(userId, userInfo) {
 }
 
 module.exports.editProfile = editProfile;
+
+const reAddItem = function(toDoId) {
+  return db.query( 
+    `UPDATE to_dos
+    SET complete = false,
+    completed_at = NULL
+    WHERE to_dos.id = $1
+    `, [toDoId])
+    .then(res => res.rows)
+    .catch(e => console.error('query error: ', e.stack))
+}
+
+module.exports.reAddItem = reAddItem;

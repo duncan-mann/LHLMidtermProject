@@ -70,7 +70,8 @@ app.get('/register', (req, res) => {
   if (userId) {
     res.redirect('/todos');
   } else {
-    res.render('register')
+    let login = {password: null};
+    res.render('register', login);
   }
 })
 
@@ -114,14 +115,15 @@ app.get("/todos/:category", (req, res) =>{
   const userId = req.session.userId;
   let urlCategory = req.params.category;
   let category;
+  console.log('category->', urlCategory);
 
   if (urlCategory === 'read') {
     category = 'books';
   } else if (urlCategory === 'watch') {
     category = 'movies';
-  } else if (urlCategory === 'eat') {
+  }  else if (urlCategory === 'eat') {
     category = 'restaurant';
-  } else if (urlCategory === 'buy') {
+  }  else if (urlCategory === 'buy') {
     category = 'product';
   }
   if (userId) {
@@ -233,16 +235,13 @@ app.post('/loginUser', (req, res) => {
   helpers.getUserByEmail(req.body.email)
     .then( (user) => {
 
-    if (user === undefined) {
-      res.status(400).send('Incorrect email/password.')
+    if (user === undefined || !bcrypt.compareSync(req.body.password, user.password)) {
+      res.render('register', {password: false});
     }
-
-    if (bcrypt.compareSync(req.body.password, user.password)) {
-      req.session.userId = user.id;
-      res.redirect('/todos');
-    } else {
-      res.send('Incorrect password!');
-    }
+    
+    req.session.userId = user.id;
+    res.redirect('/todos');
+    
   })
   .catch(e => console.error('Login Error:' , e.stack))
 });
@@ -256,29 +255,37 @@ app.post('/completeToDoItem/:toDoId', (req, res) => {
 app.post('/editProfile', (req, res) => {
   let userId = req.session.userId;
   let userInfo = req.body;
-  console.log(userInfo);
 
   if (userInfo.password !== userInfo.confirm_password) {
     res.status(400).send('Confirmed password did not match.')
   }
 // If passwords match, hash password and then replace it in the userInfo object.
   userInfo.password = bcrypt.hashSync(userInfo.password, 10);
-  console.log('new password ->', userInfo.password);
 
   helpers.checkEmailandUser(userInfo.username, userInfo.email)
   .then(result => {
 
     if (result) {
-      console.log('result->', result)
       res.status(400).send('Username or email existed');
     } else {
       helpers.editProfile(userId, userInfo).then( (user)=> {
-        console.log('New user profile->', user)
         res.redirect("/profile");
-      });
-    };
-  });
+      })
+    }
+  })
+});
 
+app.post("/reAddItem/:toDoId", (req, res) => {
+  const userId = req.session.userId;
+  const toDoId = req.params.toDoId;
+
+  if (userId) {
+    helpers.reAddItem(toDoId)
+      .then( ()=> {
+        res.redirect('/todos')
+      })
+  }
+  
 })
 
 app.post("/logout", (req, res) => {
