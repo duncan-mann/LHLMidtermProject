@@ -34,6 +34,7 @@
         <input type="email" name="email" class="form-control" placeholder="Email" />
         <input type="password" name="password" class="form-control" placeholder="Password" />
         <button type="submit">Register</button>
+        <p id="signIn-responsive">Sign In</p>
       </form>
     </div>
     <div class="form-container sign-in-container">
@@ -42,6 +43,7 @@
         <input type="email" name="email" class="form-control" placeholder="Email" />
         <input type="password" name="password" class="form-control" placeholder="Password" />
         <button>Sign In</button>
+        <p id="Register-responsive">Register</p>
       </form>
     </div>
     <div class="overlay-container">
@@ -68,7 +70,6 @@
         selector: '.background-canvas',
         minDistance: 120,
         connectParticles: true,
-        color: ['#cccc00', '#000066', '#cc0000'],
         size: 3,
         speed: 0.8,
         maxParticles: 50,
@@ -77,7 +78,6 @@
             breakpoint: 768,
             options: {
               maxParticles: 120,
-              color: ['#cccc00', '#000066', '#cc0000'],
               connectParticles: false
             }
           }

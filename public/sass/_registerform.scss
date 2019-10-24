@@ -3,6 +3,10 @@
 	width: 50%;
   z-index: 2;
 
+  #Register-responsive {
+    opacity: 0;
+  };
+
   button {
     border-radius: 2rem;
     border: 1px solid rgb(45, 77, 145);
@@ -42,6 +46,10 @@
 	width: 50%;
 	opacity: 0;
   z-index: 1;
+
+  #signIn-responsive {
+    opacity: 0;
+  };
 
   button {
     border-radius: 20px;
@@ -100,7 +108,7 @@ button:focus {
 			0 1rem 1rem grey;
 	position: relative;
 	overflow: hidden;
-	width: 70%;
+	width: 80%;
 	max-width: 100%;
 	min-height: 480px;
 }
@@ -177,7 +185,7 @@ button:focus {
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-	padding: 0 40px;
+	padding: 0 4rem;
 	text-align: center;
 	top: 0;
 	height: 100%;
@@ -203,17 +211,3 @@ button:focus {
 	transform: translateX(20%);
 }
 
-.social-container {
-	margin: 20px 0;
-}
-
-.social-container a {
-	border: 1px solid #DDDDDD;
-	border-radius: 50%;
-	display: inline-flex;
-	justify-content: center;
-	align-items: center;
-	margin: 0 5px;
-	height: 40px;
-	width: 40px;
-}

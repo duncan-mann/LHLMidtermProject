@@ -18,7 +18,7 @@
   <% include ./partials/_topbar %>
   <% include ./partials/_todosHeadComplete %>
 
-  
+
 
     <div id="searchbox">
       <div class="d-flex justify-content-center h-100">
@@ -43,26 +43,26 @@
     <script src="../scripts/functions.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.min.js"></script>
     <script>
-      window.onload = function () {
-        Particles.init({
-          selector: '.background-canvas',
-          minDistance: 120,
-          connectParticles: true,
-          color: ['#cccc00', '#000066', '#cc0000'],
-          speed: 0.8,
-          maxParticles: 50,
-          responsive: [
-            {
-              breakpoint: 768,
-              options: {
-                maxParticles: 120,
-                color: ['#cccc00', '#000066', '#cc0000'],
-                connectParticles: false
-              }
+    window.onload = function () {
+      Particles.init({
+        selector: '.background-canvas',
+        minDistance: 120,
+        connectParticles: true,
+        color: ['#9999ff', '#ccff66', '#ffcc66'],
+        speed: 0.8,
+        maxParticles: 50,
+        responsive: [
+          {
+            breakpoint: 768,
+            options: {
+              maxParticles: 120,
+              color: ['#9999ff', '#ccff66', '#ffcc66'],
+              connectParticles: false
             }
-          ]
-        })
-      }
+          }
+        ]
+      })
+    }
     </script>
 </body>
 

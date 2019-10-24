@@ -44,6 +44,16 @@ $("#menu-toggle").click(function (e) {
   $('#profileForm').on('click', (e)=>{
     $('#profileForm').submit();
   })
+
+  $('#signIn-responsive').on('click', ()=>{
+    $('.sign-in-container').fadeIn('slow');
+    $('.sign-up-container').fadeOut('slow');
+  })
+
+  $('#Register-responsive').on('click', ()=>{
+    $('.sign-up-container').fadeIn('slow');
+    $('.sign-in-container').fadeOut('slow');
+  })
 })
 
 
