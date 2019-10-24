@@ -232,10 +232,11 @@ app.post('/register', (req, res) => {
 
 app.post('/loginUser', (req, res) => {
   //Does req.body.user and req.body.PW match ? redirect to /todos : DISPLAY ERROR, redirect to /login)
+  console.log('email->', req.body.email);
   helpers.getUserByEmail(req.body.email)
     .then( (user) => {
 
-    if (user === undefined || !bcrypt.compareSync(req.body.password, user.password)) {
+    if (!req.body.email || user === undefined || !bcrypt.compareSync(req.body.password, user.password)) {
       res.render('register', {password: false});
     }
     
