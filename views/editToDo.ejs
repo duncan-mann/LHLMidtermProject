@@ -18,8 +18,10 @@
 
 <body>
 
-  <div class="p-5">
-    <h3 class="border-bottom font-weight-bold">Edit <%= toDoItem.description %></h3>
+  <div class="p-5 d-flex flex-column justify-content-center">
+    <div class="w-75">
+    <h3 class="border-bottom font-weight-bold"><%= toDoItem.description %></h3>
+    <p>Created on <%= toDoItem.created_at.toString().slice(0,15) %></p>
     <form method="POST" action="/editToDo/<%= toDoItem.id %>" id='editToDo'>
       <div class="row">
         <label for="toDoItem">Description</label>
@@ -53,6 +55,7 @@
       </div>
     </form>
   </div>
+  </div>
 
   <div id="searchbox">
     <div class="d-flex justify-content-center h-100">
@@ -76,28 +79,6 @@
     crossorigin="anonymous"></script>
   <script src="../scripts/functions.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.min.js"></script>
-  <script>
-    window.onload = function () {
-      Particles.init({
-        selector: '.background-canvas',
-        minDistance: 120,
-        connectParticles: true,
-        color: ['#9999ff', '#ccff66', '#ffcc66'],
-        speed: 0.8,
-        maxParticles: 50,
-        responsive: [
-          {
-            breakpoint: 768,
-            options: {
-              maxParticles: 120,
-              color: ['#9999ff', '#ccff66', '#ffcc66'],
-              connectParticles: false
-            }
-          }
-        ]
-      })
-    }
-  </script>
 </body>
 
 </html>
