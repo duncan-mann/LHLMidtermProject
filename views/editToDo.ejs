@@ -28,10 +28,26 @@
       <div class="row">
         <label for="category">Category</label>
         <select class="custom-select d-block w-100" name="category">
-          <option value="movies">Movie</option>
-          <option value="books">Book</option>
-          <option value="restaurant">Restaurant</option>
-          <option value="product">Product</option>
+          <option value="movies"
+          <% if (toDoItem.category === 'movies') { %>
+            selected
+          <% } %>
+          >Movie</option>
+          <option value="books"
+          <% if (toDoItem.category === 'books') { %>
+            selected
+          <% } %>
+          >Book</option>
+          <option value="restaurant"
+          <% if (toDoItem.category === 'restaurant') { %>
+            selected
+          <% } %>
+          >Restaurant</option>
+          <option value="product"
+          <% if (toDoItem.category === 'product') { %>
+            selected
+          <% } %>
+          >Product</option>
         </select>
         <button type="submit" class="btn btn-outline-primary mt-3">Submit</button>
       </div>
