@@ -38,7 +38,7 @@ $("#menu-toggle").click(function (e) {
   })
 
   $('#buyButton').on('click', (e)=>{
-    $('#eatButton').submit();
+    $('#buyButton').submit();
   })
 
   $('#profileForm').on('click', (e)=>{
