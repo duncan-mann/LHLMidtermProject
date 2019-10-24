@@ -70,7 +70,8 @@ app.get('/register', (req, res) => {
   if (userId) {
     res.redirect('/todos');
   } else {
-    res.render('register')
+    let login = {password: null};
+    res.render('register', login);
   }
 })
 
@@ -234,14 +235,16 @@ app.post('/loginUser', (req, res) => {
     .then( (user) => {
 
     if (user === undefined) {
-      res.status(400).send('Incorrect email/password.')
+      let login = {password: false};
+      res.render('register', login);
     }
 
     if (bcrypt.compareSync(req.body.password, user.password)) {
       req.session.userId = user.id;
       res.redirect('/todos');
     } else {
-      res.send('Incorrect password!');
+      let login = {password: false};
+      res.render('register', login);
     }
   })
   .catch(e => console.error('Login Error:' , e.stack))
@@ -256,29 +259,31 @@ app.post('/completeToDoItem/:toDoId', (req, res) => {
 app.post('/editProfile', (req, res) => {
   let userId = req.session.userId;
   let userInfo = req.body;
-  console.log(userInfo);
 
   if (userInfo.password !== userInfo.confirm_password) {
     res.status(400).send('Confirmed password did not match.')
   }
 // If passwords match, hash password and then replace it in the userInfo object.
   userInfo.password = bcrypt.hashSync(userInfo.password, 10);
-  console.log('new password ->', userInfo.password);
 
   helpers.checkEmailandUser(userInfo.username, userInfo.email)
   .then(result => {
 
     if (result) {
-      console.log('result->', result)
       res.status(400).send('Username or email existed');
     } else {
       helpers.editProfile(userId, userInfo).then( (user)=> {
-        console.log('New user profile->', user)
         res.redirect("/profile");
-      });
-    };
-  });
+      })
+    }
+  })
+});
 
+app.post("/reAddItem/:toDoId", (req, res) => {
+  let userId = req.session.userId;
+  let todoId = req.params.toDoId;
+
+  
 })
 
 app.post("/logout", (req, res) => {

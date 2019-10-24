@@ -18,11 +18,22 @@
                   <% if (each.complete === true) { %>
                     <tr>
                           <td><%= each.description %></td>
-                          <td><%= each.category %></td>
+                          <% if (each.category === 'movies') { %>
+                            <td>Movie</td>
+                            <% } %>
+                          <% if (each.category === 'books') { %>
+                            <td>Book</td>
+                            <% } %>
+                          <% if (each.category === 'restaurant') { %>
+                            <td>Restaurant</td>
+                            <% } %>
+                          <% if (each.category === 'product') { %>
+                             <td>Product</td>
+                            <% } %>
                           <td><%= each.created_at.toString().slice(0,15) %></td>
                           <td><%= each.completed_at.toString().slice(0,15) %></td>
                           <td>
-                            <form method="POST" action="/addCompletedItem">
+                            <form method="POST" action="/reAddItem/<%= each.id %>">
                               <button class="btn btn-outline-dark mr-5" id="addButton"><i class="fa fa-plus" aria-hidden="true"></i> Add</a></button>
                             </form>
                           </td>
