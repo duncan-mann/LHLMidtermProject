@@ -61,7 +61,7 @@ app.get("/", (req, res) => {
   if (userId) {
     res.redirect('/todos');
   } else {
-    res.render('index')
+    res.render('register', {password: null})
   }
 });
 
