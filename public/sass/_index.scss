@@ -1,37 +1,86 @@
-#id {
-  width: 100vw;
-  display: flex;
-  flex-wrap: wrap;
-}
+// #id {
+//   width: 100vw;
+//   display: flex;
+//   flex-wrap: wrap;
+// }
 
-.intro {
-  background: rgba(10, 18, 94, 0.9);
-  color: whitesmoke;
-  // border-bottom-right-radius: 5rem 5rem;
-  height: 40vh;
-  width: 75%;
-  .introduction {
-    background:rgba(129, 129, 129, 0.7);
-    // border-bottom-right-radius: 1rem 1rem;
-    position: absolute;
-    width: 50%;
-    padding: 2rem 2rem 2rem 20%;
-    margin-top: 4rem;
+// .intro {
+//   background: rgba(10, 18, 94, 0.9);
+//   color: whitesmoke;
+//   // border-bottom-right-radius: 5rem 5rem;
+//   height: 40vh;
+//   width: 75%;
+//   .introduction {
+//     background:rgba(129, 129, 129, 0.7);
+//     // border-bottom-right-radius: 1rem 1rem;
+//     position: absolute;
+//     width: 50%;
+//     padding: 2rem 2rem 2rem 20%;
+//     margin-top: 4rem;
+//   }
+// }
+
+// .blank {
+//   flex: 1;
+//   width: 25%;
+// }
+
+
+  #logo-main {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    .container-logo {
+      width: 40%;
+      position: relative;
+      .logo {
+        width: 5rem;
+        position: absolute;
+      }
+      .yellow {
+        right: 2rem;
+        top: 5rem;
+      }
+      .blue {
+        right: 1rem;
+        top: 2rem;
+      }
+      .pink {
+        right: 3rem;
+        top: 2rem;
+      }
+      .name-logo {
+        width: 30rem;
+        position: absolute;
+      }
+    }
   }
-}
 
-.blank {
-  flex: 1;
-  width: 25%;
-}
+  @keyframes spin {
+    // 0%  {transform: rotate(0deg);}
+    // 20% {transform:rotate(120deg)}
+    // 50% {transform: rotate(360deg)}
+    // 70% {transform: rotate(300deg)}
+    // 80% {transform: rotate(200deg)}
+    // 100% {transform: rotate(0deg)}
+    0%  {transform: rotate(0deg);}
+    20% {transform:rotate(80deg)}
+    50% {transform: rotate(160deg)}
+    70% {transform: rotate(220deg)}
+    80% {transform: rotate(280deg)}
+    100% {transform: rotate(360deg)}
+  }
 
-.background-canvas {
-  position:  absolute;
-  display:  block;
-  bottom: 0;
-  left: 0;
-  z-index: -1;
-}
+  body:hover .yellow {
+    animation: spin linear;
+    animation-iteration-count: 1;
+    animation-delay: 2s;
+    animation-duration: 3s;
+    transform-origin: -20% 50%;
+  }
+
+
+
 
 
 

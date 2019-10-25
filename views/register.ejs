@@ -15,7 +15,7 @@
 
 <div id="page-content-wrapper">
   <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 border-bottom">
-    <h4 id="icon">TADA!</h4>
+    <h4 id="icon">TADA</h4>
     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
       <li class="nav-item">
         <a class="btn btn-outline-dark" href="/"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
@@ -73,6 +73,7 @@
         selector: '.background-canvas',
         minDistance: 120,
         connectParticles: true,
+        color: ['#66ffcc', '#ff99cc', '#ffcc66'],
         size: 3,
         speed: 0.8,
         maxParticles: 50,
@@ -81,7 +82,8 @@
             breakpoint: 768,
             options: {
               maxParticles: 120,
-              connectParticles: false
+              connectParticles: false,
+              color: ['#66ffcc', '#ff99cc', '#ffcc66'],
             }
           }
         ]

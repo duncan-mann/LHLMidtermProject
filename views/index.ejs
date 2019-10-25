@@ -13,10 +13,8 @@
   <title>Document</title>
 </head>
 
-<body>
-  <div id="page-content-wrapper" class="navigation">
+<div id="page-content-wrapper" class="navigation">
     <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 border-bottom">
-      <h4 id="icon" class="mr-auto">TADA!</h4>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -34,17 +32,15 @@
     </nav>
   </div>
 
-  <div id="hero">
-    <div class="intro">
-      <div class="introduction">
-        <h3><strong>Todo Web App</strong></h3>
-        <h6>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure, expedita.</h6>
+<body>
+    <div id="logo-main">
+      <div class="container-logo">
+        <img src="/logo/blue.png" class="logo blue">
+        <img src="/logo/pink.png" class="logo pink">
+        <img src="/logo/yellow.png" class="logo yellow">
+        <img src="/logo/name.png" class="name-logo">
       </div>
     </div>
-    <div class="blank">
-
-    </div>
-  </div>
 
   <canvas class="background-canvas"></canvas>
   <!-- <script src="path/to/particles.min.js"></script> -->
@@ -64,8 +60,9 @@
         window.onload = function () {
           Particles.init({
             selector: '.background-canvas',
-            minDistance: 120,
+            minDistance: 200,
             connectParticles: true,
+            color: ['#66ffcc', '#ff99cc', '#ffcc66'],
             speed: 0.8,
             maxParticles: 50,
             responsive: [
@@ -73,7 +70,8 @@
                 breakpoint: 768,
                 options: {
                   maxParticles: 80,
-                  connectParticles: false
+                  connectParticles: false,
+                  color: ['#66ffcc', '#ff99cc', '#ffcc66'],
                 }
               }
             ]

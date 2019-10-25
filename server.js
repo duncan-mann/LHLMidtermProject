@@ -61,7 +61,7 @@ app.get("/", (req, res) => {
   if (userId) {
     res.redirect('/todos');
   } else {
-    res.render('register', {password: null})
+    res.render('index');
   }
 });
 
@@ -261,20 +261,31 @@ app.post('/editProfile', (req, res) => {
     res.status(400).send('Confirmed password did not match.')
   }
 // If passwords match, hash password and then replace it in the userInfo object.
-  userInfo.password = bcrypt.hashSync(userInfo.password, 10);
+  // let newPassword = bcrypt.hashSync(userInfo.password, 10);
+  // console.log('random', random);
 
-  helpers.checkEmailandUser(userInfo.username, userInfo.email)
-  .then(result => {
-
-    if (result) {
-      res.status(400).send('Username or email existed');
-    } else {
-      helpers.editProfile(userId, userInfo).then( (user)=> {
-        res.redirect("/profile");
+  helpers.getUserById(userId)
+    .then( user => {
+      helpers.checkEmailandUser(userInfo.username, userInfo.email)
+      .then(result => {
+        if (result && (user[0].email !== result.email || user[0].username !== result.username)) {
+          res.status(400).send('Username or email existed');
+        } else {
+            if (user[0].password === userInfo.password) {
+              helpers.editProfile(userId, userInfo).then( (user)=> {
+              res.redirect("/profile");
+            })
+           } else if (user[0].password !== userInfo.password) {
+              userInfo.password = bcrypt.hashSync(userInfo.password, 10);
+              helpers.editProfile(userId, userInfo).then( (user)=> {
+              res.redirect("/profile");
+            })
+          }
+          }
+        })
       })
-    }
-  })
-});
+    });
+
 
 app.post("/reAddItem/:toDoId", (req, res) => {
   const userId = req.session.userId;
