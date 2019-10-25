@@ -16,6 +16,7 @@ const helpers    = require('./helpers/db_helpers.js')
 const apiHelpers = require('./helpers/apiHelper.js')
 const cookieSession = require('cookie-session')
 const bcrypt = require('bcrypt');
+const md5 = require('md5');
 
 app.use(cookieSession({
   name: 'session',
@@ -77,11 +78,14 @@ app.get('/register', (req, res) => {
 
 app.get('/profile', (req, res) => {
   const userId = req.session.userId;
+  const userString = `${userId}@random.com`;
+  const userHash = md5(userString);
+
 
   if (userId) {
     helpers.getUserById(userId)
     .then( (results) => {
-    res.render("profile", {results});
+    res.render("profile", {results, userHash});
   })
 
  } else {
@@ -92,6 +96,9 @@ app.get('/profile', (req, res) => {
 
 app.get("/todos", (req, res) => {
   const userId = req.session.userId;
+  const userString = `${userId}@random.com`;
+
+  const userHash = md5(userString);
 
   if (userId) {
 
@@ -100,10 +107,10 @@ app.get("/todos", (req, res) => {
       if (!results) {
           helpers.getUserById(userId)
           .then( (results) => {
-          res.render("todos", {results});
+          res.render("todos", {results, userHash});
         })
       } else {
-          res.render("todos", {results});
+          res.render("todos", {results, userHash});
       }
     });
   } else {
@@ -113,6 +120,10 @@ app.get("/todos", (req, res) => {
 
 app.get("/todos/:category", (req, res) =>{
   const userId = req.session.userId;
+  const userString = `${userId}@random.com`;
+
+  const userHash = md5(userString);
+
   let urlCategory = req.params.category;
   let category;
   console.log('category->', urlCategory);
@@ -133,10 +144,10 @@ app.get("/todos/:category", (req, res) =>{
         if (!results) {
             helpers.getUserById(userId)
             .then( (results) => {
-              res.render("todos", {results});
+              res.render("todos", {results, userHash});
             })
           } else {
-            res.render("todos", {results});
+            res.render("todos", {results, userHash});
         }
       });
     } else {
@@ -146,6 +157,9 @@ app.get("/todos/:category", (req, res) =>{
 
 app.get("/completed", (req, res) => {
   const userId = req.session.userId;
+  const userString = `${userId}@random.com`;
+  const userHash = md5(userString);
+
 
   if (userId) {
 
@@ -154,10 +168,10 @@ app.get("/completed", (req, res) => {
       if (!results) {
           helpers.getUserById(userId)
           .then( (results) => {
-          res.render("completedItems", {results});
+          res.render("completedItems", {results, userHash});
         })
       } else {
-          res.render("completedItems", {results});
+          res.render("completedItems", {results, userHash});
       }
     });
   } else {
@@ -172,6 +186,9 @@ app.get("/home", (req, res) => {
 app.get('/editToDo/:toDoId', (req, res) => {
   const userId = req.session.userId;
   const toDoId = req.params.toDoId;
+  const userString = `${userId}@random.com`;
+  const userHash = md5(userString);
+
 
   if (userId) {
 
@@ -185,7 +202,7 @@ app.get('/editToDo/:toDoId', (req, res) => {
                        toDoItem = each;
                     }
                   }
-                  let templateVars = {results, toDoItem}
+                  let templateVars = {results, toDoItem, userHash}
                   console.log(templateVars);
                   res.render('editToDo', templateVars)
                 })
