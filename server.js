@@ -61,7 +61,7 @@ app.get("/", (req, res) => {
   if (userId) {
     res.redirect('/todos');
   } else {
-    res.render('register', {password: null})
+    res.render('index');
   }
 });
 
@@ -239,10 +239,10 @@ app.post('/loginUser', (req, res) => {
     if (!req.body.email || user === undefined || !bcrypt.compareSync(req.body.password, user.password)) {
       res.render('register', {password: false});
     }
-    
+
     req.session.userId = user.id;
     res.redirect('/todos');
-    
+
   })
   .catch(e => console.error('Login Error:' , e.stack))
 });
@@ -297,7 +297,7 @@ app.post("/reAddItem/:toDoId", (req, res) => {
         res.redirect('/todos')
       })
   }
-  
+
 })
 
 app.post("/logout", (req, res) => {

@@ -8,12 +8,13 @@ $("#menu-toggle").click(function (e) {
 
 //search bottom
   $("#addButton").click(function(e) {
-    $("#searchbox").fadeIn(500);
+    $("#searchbox").fadeIn(300);
+    $("input").focus();
   })
 
   $('#searchbox').click(function(e) {
     if(e.target.className !== 'search_input') {
-      $('#searchbox').fadeOut(500);
+      $('#searchbox').fadeOut(300);
     }
   })
 
