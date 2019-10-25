@@ -494,7 +494,9 @@ button:focus {
   display: flex;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
-  justify-content: center; }
+  justify-content: center;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap; }
   #logo-main .container-logo {
     width: 40%;
     position: relative; }
@@ -566,6 +568,59 @@ body:hover .yellow {
   -webkit-transform-origin: -20% 50%;
   -ms-transform-origin: -20% 50%;
   transform-origin: -20% 50%; }
+
+@media (max-width: 850px) {
+  #logo-main {
+    width: 100vw;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center; }
+    #logo-main .container-logo {
+      width: 70%;
+      position: relative; }
+      #logo-main .container-logo .logo {
+        width: 5rem;
+        position: absolute; }
+      #logo-main .container-logo .yellow {
+        right: 7rem;
+        top: 5rem; }
+      #logo-main .container-logo .blue {
+        right: 6rem;
+        top: 2rem; }
+      #logo-main .container-logo .pink {
+        right: 8rem;
+        top: 2rem; } }
+
+@media (max-width: 650px) {
+  #logo-main {
+    width: 100vw;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center; }
+    #logo-main .container-logo {
+      width: 100%; }
+      #logo-main .container-logo .logo {
+        width: 10%;
+        position: absolute; }
+      #logo-main .container-logo .yellow {
+        right: 20vw;
+        top: 15vh; }
+      #logo-main .container-logo .blue {
+        right: 18vw;
+        top: 12vh; }
+      #logo-main .container-logo .pink {
+        right: 22vw;
+        top: 12vh; }
+      #logo-main .container-logo .name-logo {
+        width: 80%;
+        position: absolute;
+        top: 10vh; } }
 
 @media (max-width: 600px) {
   .intro {

@@ -30,6 +30,7 @@
     width: 100vw;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     .container-logo {
       width: 40%;
       position: relative;
@@ -81,6 +82,64 @@
 
 
 
+@media (max-width: 850px) {
+  #logo-main {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    .container-logo {
+      width: 70%;
+      position: relative;
+      .logo {
+        width: 5rem;
+        position: absolute;
+      }
+      .yellow {
+        right: 7rem;
+        top: 5rem;
+      }
+      .blue {
+        right: 6rem;
+        top: 2rem;
+      }
+      .pink {
+        right: 8rem;
+        top: 2rem;
+      }
+    }
+  }
+}
 
 
+@media (max-width: 650px) {
+  #logo-main {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    .container-logo {
+      width: 100%;
+      .logo {
+        width: 10%;
+        position: absolute;
+      }
+      .yellow {
+        right: 20vw;
+        top: 15vh;
+      }
+      .blue {
+        right: 18vw;
+        top: 12vh;
+      }
+      .pink {
+        right: 22vw;
+        top: 12vh;
+      }
+      .name-logo {
+        width: 80%;
+        position: absolute;
+        top: 10vh;
+      }
+    }
+  }
+}
 
